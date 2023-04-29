@@ -5,7 +5,7 @@
 .header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('./Images/PublicImages/bg-food-img.jpg');
-      /* url('./Images/PublicImages/banner.png'); */
+  /* url('./Images/PublicImages/banner.png'); */
   opacity: var(--mainOpacity);
   height: 25em !important;
   background-size: cover;
@@ -31,8 +31,7 @@
 .gray-link {
   color: rgb(195, 200, 206);
   /* color: #FFFFFF; */
-   /* color: rgb(251,249,248);  */
-
+  /* color: rgb(251,249,248);  */
 }
 
 .col-image-left {
@@ -51,11 +50,11 @@
 }
 
 .letter-spacing {
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 
 .lost-image {
-  background-image: url('./Images/PublicImages/image-3.jpg');
+  /* background-image: url('./Images/PublicImages/image-3.jpg'); */
   height: 25em !important;
   width: '720';
 }
@@ -66,6 +65,26 @@
   align-items: center !important;
 }
 
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.gallery-image {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  margin: 10px;
+}
+
+.container {
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 .book-div {
   width: 480px;
@@ -76,8 +95,6 @@
   pointer-events: none;
   cursor: default;
 }
-
-
 
 .app-container {
   min-height: 50vh;
