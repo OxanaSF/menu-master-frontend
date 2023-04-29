@@ -3,6 +3,8 @@ import axios from 'axios';
 import { RecipeHome } from './RecipeHome';
 import type { RecipeModel } from '../../../models/RecipeModel';
 import { Carousel } from 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const API_BASE_URL = 'http://localhost:8080/recipes';
 const RECIPES_LIMIT = 10;
@@ -30,12 +32,16 @@ export function RecipeCarousel(): JSX.Element {
   useEffect(() => {
     if (carouselRef.current) {
       const carousel = new Carousel(carouselRef.current, {
-        // interval: 3000,
+        interval: 3000,
         pause: false,
         ride: 'carousel',
+        wrap: true, // allow carousel to wrap around to the beginning
       });
+
+      
     }
   }, [isLoading]);
+  
 
   const renderRecipeCarousel = (): JSX.Element => (
     <div className="carousel-inner" ref={carouselRef}>
@@ -84,9 +90,6 @@ export function RecipeCarousel(): JSX.Element {
   }
   return (
     <div className="container mt-5">
-      <div className="homepage-carousel-title">
-        <h3>Find your next recipe.</h3>
-      </div>
 
       {renderRecipeCarousel()}
     </div>
