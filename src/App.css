@@ -1,0 +1,85 @@
+:root {
+  --mainOpacity: rgba(0, 0, 0, 0.55);
+}
+
+.header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('./Images/PublicImages/bg-food-img.jpg');
+      /* url('./Images/PublicImages/banner.png'); */
+  opacity: var(--mainOpacity);
+  height: 25em !important;
+  background-size: cover;
+  filter: brightness(1.5);
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.35);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.main-color {
+  /* background-color: rgb(17, 34, 63); */
+  background-color: rgb(36, 82, 56);
+  /* background-color: rgb(88, 21, 28); */
+  /* background-color: rgb(251,249,248); */
+}
+
+.gray-link {
+  color: rgb(195, 200, 206);
+  /* color: #FFFFFF; */
+   /* color: rgb(251,249,248);  */
+
+}
+
+.col-image-left {
+  background-image: url('./Images/PublicImages/hero-image-1.png');
+  height: 38em !important;
+  background-size: cover;
+  background-position: center center;
+}
+
+.col-image-right {
+  background-image: url('./Images/PublicImages/hero-image-2.png');
+  background-image: url('./Images/PublicImages/hero-image-2.png');
+  height: 38em !important;
+  background-size: cover;
+  background-position: center center;
+}
+
+.letter-spacing {
+  letter-spacing: .5px;
+}
+
+.lost-image {
+  background-image: url('./Images/PublicImages/image-3.jpg');
+  height: 25em !important;
+  width: '720';
+}
+
+.homepage-carousel-title {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+
+.book-div {
+  width: 480px;
+  height: 384px;
+}
+
+.inactiveLink {
+  pointer-events: none;
+  cursor: default;
+}
+
+
+
+.app-container {
+  min-height: 50vh;
+  height: 100%;
+}
