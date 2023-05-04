@@ -2,6 +2,7 @@ import { RecipeIngredientModel } from './RecipeIngredientModel';
 import { UserModel } from './UserModel';
 
 export interface RecipeModel {
+  spoonacularId: any;
   id: number | null | undefined;
   title: string | undefined;
   image: any;

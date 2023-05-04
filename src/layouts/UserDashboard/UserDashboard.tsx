@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import backgroundImage from '../../Images/PublicImages/test.png';
 
-export const UserDashboard = () => {
+
+type UserDashboardProps = {
+  loggedIn: boolean;
+  handleLogout: () => void;
+}
+
+export const UserDashboard: React.FC<UserDashboardProps> = ({ loggedIn, handleLogout }) => {
   const [favoriteMenus, setFavoriteMenus] = useState([
     {
       id: 1,

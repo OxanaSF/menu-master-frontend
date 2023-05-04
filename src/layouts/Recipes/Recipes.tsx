@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Recipe } from '../../components/Recipe';
-import type { RecipeModel } from '../../models/RecipeModel'; 
-import { Carousel } from 'bootstrap';
+import type { RecipeModel } from '../../models/RecipeModel';
+import { RecipeDto } from '../../models/dto/RecipeDto';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 const API_BASE_URL = 'http://localhost:8080/recipes';
 const RECIPES_LIMIT = 21;
@@ -29,34 +28,33 @@ export function Recipes(): JSX.Element {
       });
   }, []);
 
-
-
-  const renderGallery= (): JSX.Element => (
+  const renderGallery = (): JSX.Element => (
     <div className="carousel-inner" ref={carouselRef}>
       {[...recipes, ...recipes, ...recipes].map(
-        (recipe: RecipeModel, index: number) => (
-          
-            <div className="row d-flex justify-content-center align-items-center">
-              {[...Array(3)].map((_, i) => {
-                const recipeIndex = index * 3 + i;
-                if (recipes[recipeIndex]) {
-                  return (
-                    <Recipe
-                      key={recipeIndex}
-                      recipe={recipes[recipeIndex]}
-                    />
-                  );
-                }
-                return null;
-              })}
-            </div>
-          
-        )
-      )}
+  (recipe: RecipeModel, index: number) => (
+    <div key={index} className="row d-flex justify-content-center align-items-center">
+      {[...Array(3)].map((_, i) => {
+        const recipeIndex = index * 3 + i;
+        if (recipes[recipeIndex]) {
+          return (
+            <Recipe
+              key={recipes[recipeIndex].id}
+              recipe={recipes[recipeIndex]}
+              onSelect={(recipe: RecipeModel) => {
+                throw new Error('Function not implemented.');
+              }}
+            />
+          );
+        }
+        return null;
+      })}
+    </div>
+  )
+)}
+
+
     </div>
   );
-
-
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -66,13 +64,11 @@ export function Recipes(): JSX.Element {
     return <div>{httpError}</div>;
   }
 
-
   return (
     <div className="container mt-5">
       <div className="homepage-carousel-title">
         <h3 className="mb-5">Find your next recipe.</h3>
       </div>
-
       {renderGallery()}
     </div>
   );
