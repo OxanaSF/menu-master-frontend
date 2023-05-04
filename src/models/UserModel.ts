@@ -4,7 +4,7 @@ import { IUser } from "./interfaces/IUser";
 
 
 export class UserModel implements IUser {
-  user_id: number;
+  user_id: string; // Change the type to string
   username: string;
   password: string;
   dietaryRestrictions: string;

@@ -2,7 +2,8 @@ import { RecipeModel } from "../RecipeModel";
 
 
 export interface IUser {
-  user_id: number;
+  user_id: string;
+  // user_id: number;
   username: string;
   password: string;
   dietaryRestrictions: string;

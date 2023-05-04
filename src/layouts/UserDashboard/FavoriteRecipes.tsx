@@ -15,7 +15,7 @@ export function FavoriteRecipes(): JSX.Element {
 
   useEffect(() => {
     axios
-      .get(API_BASE_URL, { params: { limit: FAVORITE_RECIPES_LIMIT } })
+      .get(API_BASE_URL)
       .then((response) => {
         setFavoriteRecipes(response.data);
         setIsLoading(false);
@@ -26,6 +26,7 @@ export function FavoriteRecipes(): JSX.Element {
         setHttpError('An error occurred while fetching the favorite recipes.');
       });
   }, []);
+  
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -43,7 +44,9 @@ export function FavoriteRecipes(): JSX.Element {
       <div className="row mt-5">
         {favoriteRecipes.map((recipe: RecipeModel) => (
           <div className="col-lg-4 mb-4" key={recipe.id}>
-            <Recipe recipe={recipe} />
+            <Recipe recipe={recipe} onSelect={function (recipe: RecipeModel): void {
+              throw new Error('Function not implemented.');
+            } } />
           </div>
         ))}
       </div>
