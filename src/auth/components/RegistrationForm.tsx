@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import bgImage from '../../Images/PublicImages/hero-image-2.png';
-import { v4 as uuidv4 } from 'uuid';
 
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
+
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -23,11 +26,11 @@ const RegisterForm = () => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      // body: JSON.stringify(formData),
       body: JSON.stringify({
-        user_id: uuidv4(),
         username: formData.email,
         password: formData.password,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
         dietaryRestrictions: '',
         preferredCuisineTypes: '',
         groceryList: '',
@@ -38,6 +41,7 @@ const RegisterForm = () => {
       .then(response => {
         if (response.ok) {
           console.log('User registered successfully');
+          navigate('/');
         } else {
           console.log('Error registering user');
         }

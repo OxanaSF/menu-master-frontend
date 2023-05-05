@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './layouts/NavbarAndFooter/Navbar';
 import { HomePage } from './layouts/HomePage/HomePage';
@@ -11,31 +10,29 @@ import './App.css';
 import { PlanMeals } from './layouts/PlanMeals/PlanMeals';
 import RegistrationForm from './auth/components/RegistrationForm';
 import LoginForm from './auth/components/LoginForm';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from './store/selectors/authSelectors';
 
-export const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  const handleLogout = () => {
-    setLoggedIn(false);
-  };
+const App = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <BrowserRouter>
       <div className="app-container">
-        <Navbar loggedIn={loggedIn} handleLogout={handleLogout} />
+        <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/recipes" element={<Recipes />} />
-          <Route
-            path="/dashboard"
-            element={<UserDashboard loggedIn={loggedIn} handleLogout={handleLogout} />}
-          />
+          {Boolean(isLoggedIn) && <Route path="/dashboard/:id" element={<UserDashboard />} />}
+          
           <Route path="/plan-meals" element={<PlanMeals />} />
           <Route path="/user-registration" element={<RegistrationForm />} />
-          <Route path="/user-login" element={<LoginForm setLoggedIn={setLoggedIn} />} />
+          <Route path="/user-login" element={<LoginForm />} />
         </Routes>
         <Footer />
       </div>
     </BrowserRouter>
   );
 };
+
+export default App;
