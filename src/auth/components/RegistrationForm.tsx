@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import bgImage from '../../Images/PublicImages/hero-image-2.png';
 
 
+
 const RegisterForm = () => {
   const navigate = useNavigate();
-
 
   const [formData, setFormData] = useState({
     email: '',
@@ -16,12 +16,15 @@ const RegisterForm = () => {
     lastName: '',
   });
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleInputChange = (event: { target: { name: any; value: any; }; }) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+    setErrorMessage('');
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     const requestOptions = {
       method: 'POST',
@@ -37,18 +40,24 @@ const RegisterForm = () => {
         individualMenu: '',
       }),
     };
-    fetch('http://localhost:8080/users/register', requestOptions)
-      .then(response => {
-        if (response.ok) {
-          console.log('User registered successfully');
-          navigate('/');
+    try {
+      const response = await fetch('http://localhost:8080/users/register', requestOptions);
+      if (response.ok) {
+        const userData = await response.json();
+        if (userData[0] === 'User with the same username already exists!') {
+          setErrorMessage('User with the same username already exists!');
+          console.log("userData[0]", userData[0]);
         } else {
-          console.log('Error registering user');
+          console.log('User data updated:', userData);
+          console.log('User registered successfully');
+          
         }
-      })
-      .catch(error => {
-        console.error('Error registering user:', error);
-      });
+      } else {
+        console.log('Error registering user');
+      }
+    } catch (error) {
+      console.error('Error registering user:', error);
+    }
   };
   
 
@@ -65,6 +74,7 @@ const RegisterForm = () => {
         }}
       >
         <h2 className="text-center mb-4">Register</h2>
+        {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
@@ -74,6 +84,7 @@ const RegisterForm = () => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
+              required
             />
           </Form.Group>
 
@@ -85,6 +96,7 @@ const RegisterForm = () => {
               name="password"
               value={formData.password}
               onChange={handleInputChange}
+              required
             />
           </Form.Group>
 
@@ -96,6 +108,7 @@ const RegisterForm = () => {
               name="passwordConfirmation"
               value={formData.passwordConfirmation}
               onChange={handleInputChange}
+              required
             />
           </Form.Group>
 
@@ -107,6 +120,7 @@ const RegisterForm = () => {
               name="firstName"
               value={formData.firstName}
               onChange={handleInputChange}
+              required
             />
           </Form.Group>
 
@@ -118,6 +132,7 @@ const RegisterForm = () => {
               name="lastName"
               value={formData.lastName}
               onChange={handleInputChange}
+              required
             />
           </Form.Group>
 
