@@ -1,16 +1,43 @@
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectIsLoggedIn } from '../../store/selectors/authSelectors';
+import { logoutRequest } from '../../store/actions/authActions';
+import { selectUserId } from '../../store/selectors/userSelectors';
+import { saveUserId } from '../../store/actions/userActions';
 
-interface NavbarProps {
-  loggedIn: boolean;
-  handleLogout: () => void;
-}
 
-export const Navbar = ({ loggedIn, handleLogout }: NavbarProps) => {
+
+export const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const isLoggedIn = useSelector(selectUserId);
+  const userId = useSelector(selectUserId);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleDropdownToggle = () => setShowDropdown(!showDropdown);
+
+  const handleLogout = async () => {
+    try {
+      await fetch('http://localhost:8080/users/logout', {
+        method: 'POST',
+        credentials: 'include',
+      });
+      document.cookie =
+        // eslint-disable-next-line no-template-curly-in-string
+        'sessionId=${userId}; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      dispatch(logoutRequest());
+      navigate('/');
+      window.location.reload();
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark main-color py-3">
@@ -36,11 +63,15 @@ export const Navbar = ({ loggedIn, handleLogout }: NavbarProps) => {
                 Recipes
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/dashboard" className="nav-link">
-                Dashboard
-              </Link>
-            </li>
+            {
+              Boolean(isLoggedIn) &&
+              <li className="nav-item">
+                <Link to="/dashboard" className="nav-link">
+                  Dashboard
+                </Link>
+              </li>
+            }
+
             <li className="nav-item">
               <Link to="/plan-meals" className="nav-link">
                 Plan Meals
@@ -48,23 +79,26 @@ export const Navbar = ({ loggedIn, handleLogout }: NavbarProps) => {
             </li>
           </ul>
           <ul className="navbar-nav ms-auto">
-            {loggedIn ? (
-              <li className="nav-item">
-                <Dropdown show={showDropdown} onToggle={handleDropdownToggle}>
-                  <Dropdown.Toggle
-                    variant="outline-light"
-                    id="dropdown-basic"
-                    className="me-2"
-                  >
-                    Logout
-                  </Dropdown.Toggle>
+            {
+              Boolean(isLoggedIn) &&
+               (
+                <li className="nav-item">
+                  <Dropdown show={showDropdown} onToggle={handleDropdownToggle}>
+                    <Button
+                      variant="outline-light"
+                      id="dropdown-basic"
+                      className="me-2"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </Button>
+                  </Dropdown>
+                </li>
+              )
+            }
 
-                  <Dropdown.Menu>
-                    <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </li>
-            ) : (
+            {
+              !Boolean(isLoggedIn) &&
               <li className="nav-item">
                 <Dropdown show={showDropdown} onToggle={handleDropdownToggle}>
                   <Dropdown.Toggle
@@ -76,14 +110,14 @@ export const Navbar = ({ loggedIn, handleLogout }: NavbarProps) => {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="/user-login">Sign In</Dropdown.Item>
+                    <Dropdown.Item href="/user-login">Log In</Dropdown.Item>
                     <Dropdown.Item href="/user-registration">
                       Register
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </li>
-            )}
+            }
           </ul>
         </div>
       </div>

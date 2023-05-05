@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-type LoginFormProps = {
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { Container, Form, Button } from 'react-bootstrap';
 
-const LoginForm = ({ setLoggedIn }: LoginFormProps) => {
+import { useSelector, useDispatch } from 'react-redux';
+import { loginRequest } from '../../store/actions/authActions';
+import { saveUserId, saveUserName } from '../../store/actions/userActions';
+import { selectUserId } from '../../store/selectors/userSelectors';
+
+
+const LoginForm = () => {
+  const userId = useSelector(selectUserId);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: '',
   });
   const [error, setError] = useState<string | null>(null);
-
-  const navigate = useNavigate();
 
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
@@ -27,9 +33,23 @@ const LoginForm = ({ setLoggedIn }: LoginFormProps) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     };
-    const response = await fetch('http://localhost:8080/users/login', requestOptions);
+    const response = await fetch(
+      'http://localhost:8080/users/login',
+      requestOptions
+    );
     if (response.ok) {
-      navigate('/dashboard');
+      const userData = await response.json();
+      dispatch(loginRequest());
+      console.log('User data updated:', userData);
+   
+      document.cookie = `sessionId=${userData[0]};path=/`;
+
+      dispatch(saveUserId(userData[0]));
+      console.log('selectUserId', userId);
+      dispatch(saveUserName(userData[1]));
+      console.log(`/dashboard/${userData[0]}`);
+
+      navigate(`/dashboard/${userData[0]}`);
     } else {
       setError('Invalid email or password');
     }
@@ -54,8 +74,8 @@ const LoginForm = ({ setLoggedIn }: LoginFormProps) => {
             <Form.Control
               type="email"
               placeholder="Enter email"
-              name="email"
-              value={formData.email}
+              name="username"
+              value={formData.username}
               onChange={handleInputChange}
             />
           </Form.Group>

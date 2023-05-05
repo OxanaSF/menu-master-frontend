@@ -1,6 +1,8 @@
 :root {
   --mainOpacity: rgba(0, 0, 0, 0.55);
+  height: 100%;
 }
+
 
 .header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
@@ -22,11 +24,8 @@
 }
 
 .main-color {
-  /* background-color: rgb(17, 34, 63); */
   background-color: rgb(36, 82, 56);
-  /* background-color: #94A89C; */
-  /* background-color: rgb(88, 21, 28); */
-  /* background-color: rgb(251,249,248); */
+  background-color: rgb(6, 63, 47);
 }
 
 .gray-link {
