@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RecipeModel } from '../../models/RecipeModel';
 import { RecipeDto } from '../../models/dto/RecipeDto';
 import axios from 'axios';
+import RecipeModal from './RecipeModal';
 
 interface SearchedRecipeProps {
   key: number;
   image: string;
   title: string;
-  recipe: RecipeModel; 
+  recipe: RecipeModel;
 }
 
 const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
@@ -16,6 +17,8 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
   title,
   recipe,
 }) => {
+  const [showModal, setShowModal] = useState(false);
+
   const handleSave = () => {
     const recipeDto = RecipeDto.fromRecipeModel(recipe);
     axios
@@ -28,6 +31,14 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
       });
   };
 
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div
       className="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-3 searched-recipes-list"
@@ -36,10 +47,21 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
       <div className="text-center">
         {image && <img src={image} alt={title || ''} />}
         {title && <p>{title}</p>}
-        <button className="btn main-color text-white mb-4" onClick={handleSave}>
+        <button
+          className="btn main-color text-white mb-5 searched-recipe-btn"
+          onClick={handleSave}
+        >
           Save
         </button>
+        <button
+          className="btn main-color text-white mb-5"
+          onClick={handleOpenModal}
+        >
+          View Details
+        </button>
       </div>
+
+      {showModal && <RecipeModal recipe={recipe} onClose={handleCloseModal} />}
     </div>
   );
 };

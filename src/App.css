@@ -69,11 +69,9 @@
 
 .search-bar {
   width: 50% !important;
-
 }
 
 .searched-recipes-list {
-
   margin: auto !important;
 }
 
@@ -145,4 +143,9 @@
 
 .btn:hover {
   background-color: #94a89c !important;
+}
+
+.searched-recipe-btn {
+  margin-right: 0.15rem;
+  background-color: rgb(31, 55, 48);
 }

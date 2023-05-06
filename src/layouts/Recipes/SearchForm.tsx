@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { RecipeModel } from '../../models/RecipeModel';
 
 interface SearchFormProps {
-  onFormSubmit: (formData: RecipeModel[]) => void;
-  setSearchSuccess: React.Dispatch<React.SetStateAction<boolean>>;
+  onFormSubmit: (formData: RecipeModel[]) => void; 
+  setSearchSuccess: React.Dispatch<React.SetStateAction<boolean>>; 
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({
@@ -11,6 +11,9 @@ const SearchForm: React.FC<SearchFormProps> = ({
   setSearchSuccess,
 }) => {
   const [query, setQuery] = useState('');
+  const [selectedRecipe, setSelectedRecipe] = useState<RecipeModel | null>(
+    null
+  ); 
 
   const searchRecipes = async () => {
     const apiKey = '';
@@ -19,6 +22,9 @@ const SearchForm: React.FC<SearchFormProps> = ({
     const params = {
       apiKey,
       query,
+      number: '20',
+      instructionsRequired: 'true',
+      addRecipeInformation: 'true',
     };
 
     const queryString = new URLSearchParams(params).toString();
@@ -39,6 +45,10 @@ const SearchForm: React.FC<SearchFormProps> = ({
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     searchRecipes();
+  };
+
+  const handleRecipeClick = (recipe: RecipeModel) => {
+    setSelectedRecipe(recipe);
   };
 
   return (
