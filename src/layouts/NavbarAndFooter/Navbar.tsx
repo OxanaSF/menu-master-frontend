@@ -66,7 +66,7 @@ export const Navbar = () => {
             {
               Boolean(isLoggedIn) &&
               <li className="nav-item">
-                <Link to="/dashboard" className="nav-link">
+                <Link to={`/dashboard/${userId}`} className="nav-link">
                   Dashboard
                 </Link>
               </li>
