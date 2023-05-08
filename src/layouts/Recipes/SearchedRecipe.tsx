@@ -26,7 +26,8 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
   const handleSave = () => {
     const recipeDto = RecipeDto.fromRecipeModel(recipe);
     const spoonacularId = recipe.id;
-    console.log(recipe)
+    console.log(recipe);
+    console.log('Recipe instructions: ', recipe.instructions);
     console.log('spoonacularId', spoonacularId);
     axios
       .post(
@@ -40,12 +41,6 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
         console.log(error);
       });
   };
-
-
-
-
-
-  
 
   const handleOpenModal = () => {
     setShowModal(true);

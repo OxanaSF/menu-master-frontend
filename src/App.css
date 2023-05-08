@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+li {
+  list-style-type: none;
+}
+
 .header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('./Images/PublicImages/bg-food-img.jpg');
