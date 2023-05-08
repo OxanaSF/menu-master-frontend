@@ -31,26 +31,7 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="col-md-2 mb-4">
-            <h5 className="gray-link">Follow Us</h5>
-            <ul className="list-unstyled">
-              <li>
-                <a href="#" className="gray-link">
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a href="#" className="gray-link">
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a href="#" className="gray-link">
-                  Instagram
-                </a>
-              </li>
-            </ul>
-          </div>
+
           <div className="col-md-2 mb-4">
             <h5 className="gray-link">Quick Links</h5>
             <ul className="list-unstyled">
@@ -71,6 +52,27 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
+
+          <div className="col-md-2 mb-4">
+            <h5 className="gray-link">Follow Us</h5>
+            <ul className="list-unstyled">
+              <li>
+                <a href="#" className="social-icon gray-link">
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="social-icon gray-link">
+                  <i className="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="social-icon gray-link">
+                  <i className="fab fa-instagram"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="row gray-link">
           <div className="col-12 text-center">
@@ -80,6 +82,5 @@ export const Footer = () => {
         </div>
       </div>
     </footer>
-    
   );
 };

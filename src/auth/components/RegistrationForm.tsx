@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Alert } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import bgImage from '../../Images/PublicImages/hero-image-2.png';
-
-
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -18,13 +16,13 @@ const RegisterForm = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleInputChange = (event: { target: { name: any; value: any; }; }) => {
+  const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
     setErrorMessage('');
   };
 
-  const handleSubmit = async (event: { preventDefault: () => void; }) => {
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     const requestOptions = {
       method: 'POST',
@@ -41,16 +39,18 @@ const RegisterForm = () => {
       }),
     };
     try {
-      const response = await fetch('http://localhost:8080/users/register', requestOptions);
+      const response = await fetch(
+        'http://localhost:8080/users/register',
+        requestOptions
+      );
       if (response.ok) {
         const userData = await response.json();
         if (userData[0] === 'User with the same username already exists!') {
           setErrorMessage('User with the same username already exists!');
-          console.log("userData[0]", userData[0]);
+          console.log('userData[0]', userData[0]);
         } else {
           console.log('User data updated:', userData);
           console.log('User registered successfully');
-          
         }
       } else {
         console.log('Error registering user');
@@ -59,7 +59,6 @@ const RegisterForm = () => {
       console.error('Error registering user:', error);
     }
   };
-  
 
   return (
     <div>
@@ -136,13 +135,26 @@ const RegisterForm = () => {
             />
           </Form.Group>
 
-          <Button
-            className="btn main-color text-white mt-3"
-            variant="primary"
-            type="submit"
-          >
-            Register
-          </Button>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Button
+              className="btn main-color text-white mt-3 "
+              variant="primary"
+              type="submit"
+            >
+              Register
+            </Button>
+            <span style={{ marginLeft: '10px' }}>
+              Already have an account?{' '}
+              <Link to="/user-login">
+                {' '}
+                <span
+                  className="text-decoration-none main-color-text">
+                    
+                  Log in
+                </span>
+              </Link>
+            </span>
+          </div>
         </Form>
       </Container>
     </div>

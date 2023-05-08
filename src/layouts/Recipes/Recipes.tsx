@@ -65,32 +65,26 @@ export function Recipes(): JSX.Element {
     </div>
   );
 
-
-
-
-const renderSearchedGallery = (): JSX.Element | null => {
-  if (searchedRecipes.length === 0) {
-    return null;
-  } else {
-    return (
-      <div>
-        <div className="row d-flex justify-content-center align-items-center">
-          {searchedRecipes.map((recipe: RecipeModel, index: number) => (
-            <SearchedRecipe
-              key={index}
-              image={recipe.image}
-              title={recipe.title || ''}
-              recipe={recipe} 
-            />
-          ))}
+  const renderSearchedGallery = (): JSX.Element | null => {
+    if (searchedRecipes.length === 0) {
+      return null;
+    } else {
+      return (
+        <div >
+          <div className="row d-flex justify-content-center">
+            {searchedRecipes.map((recipe: RecipeModel, index: number) => (
+              <SearchedRecipe
+                key={index}
+                image={recipe.image}
+                title={recipe.title || ''}
+                recipe={recipe}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    );
-  }
-};
-
-
-
+      );
+    }
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;

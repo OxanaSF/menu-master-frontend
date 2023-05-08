@@ -20,6 +20,7 @@ const App = () => {
     <BrowserRouter>
       <div className="app-container">
         <Navbar />
+        <div className='container-main'>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/recipes" element={<Recipes />} />
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/user-registration" element={<RegistrationForm />} />
           <Route path="/user-login" element={<LoginForm />} />
         </Routes>
+        </div>
         <Footer />
       </div>
     </BrowserRouter>
