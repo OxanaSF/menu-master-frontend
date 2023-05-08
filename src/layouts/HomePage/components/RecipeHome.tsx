@@ -10,8 +10,11 @@ export const RecipeHome = ({ recipe }: RecipeProps) => {
       <div className="text-center">
         <div
           style={{
-            height: '150px',
+            height: '200px',
+            width: '200px',
             overflow: 'hidden',
+            borderRadius: '50%',
+            border: 'rgb(6, 63, 47) solid .2rem',
           }}
         >
           <img
@@ -24,13 +27,6 @@ export const RecipeHome = ({ recipe }: RecipeProps) => {
             }}
           />
         </div>
-        <h6 className="mt-2" style={{ fontSize: '1rem', marginTop: '0.5rem' }}>
-          {recipe.name}
-        </h6>
-        {/* <p>{recipe.instructions}</p> */}
-        {/* <a className="btn main-color text-white" href="#">
-          Save
-        </a> */}
       </div>
     </div>
   );

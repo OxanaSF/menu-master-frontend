@@ -3,7 +3,6 @@
   height: 100%;
 }
 
-
 .header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('./Images/PublicImages/bg-food-img.jpg');
@@ -23,15 +22,23 @@
   height: 100%;
 }
 
+.container-main {
+  min-height: 65vh;
+}
+
 .main-color {
   background-color: rgb(36, 82, 56);
   background-color: rgb(6, 63, 47);
 }
+.main-color-text {
+  color: rgb(6, 63, 47);
+  font-weight: bold;
+  text-decoration: none !important;
+}
 
 .gray-link {
-  color: rgb(195, 200, 206);
-  /* color: #FFFFFF; */
-  /* color: rgb(251,249,248);  */
+  color: rgb(251, 249, 248);
+  text-decoration: none;
 }
 
 .col-image-left {
@@ -49,20 +56,39 @@
   background-position: center center;
 }
 
+.hero-container {
+  margin: 0 2rem;
+}
+
+.container-dash {
+  /* background-image: linear-gradient(
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
+    ),
+    url(${backgroundImage}); */
+  background-size: cover;
+  min-height: 70vh;
+  height: 100%;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 3rem;
+}
+
+.row-dash {
+  width: 50%;
+  margin: auto;
+}
+
+.search-bar {
+  width: 50% !important;
+}
+
+.searched-recipes-list {
+  margin: auto !important;
+}
+
 .letter-spacing {
   letter-spacing: 0.5px;
-}
-
-.lost-image {
-  /* background-image: url('./Images/PublicImages/image-3.jpg'); */
-  height: 25em !important;
-  width: '720';
-}
-
-.homepage-carousel-title {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
 }
 
 .gallery-container {
@@ -117,4 +143,15 @@
 
 .btn:hover {
   background-color: #94a89c !important;
+}
+
+.searched-recipe-btn {
+  margin-right: 0.15rem;
+  background-color: rgb(31, 55, 48);
+}
+
+.div {
+  background-color: red;
+  border: solid 2px black;
+  margin: 0 20px;
 }

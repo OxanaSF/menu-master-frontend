@@ -1,19 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { RecipeHome } from './RecipeHome';
-import type { RecipeModel } from '../../../models/RecipeModel';
-import { Carousel } from 'bootstrap';
+import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { RecipeModel } from '../../../models/RecipeModel';
 
 const API_BASE_URL = 'http://localhost:8080/recipes';
-const RECIPES_LIMIT = 10;
+const RECIPES_LIMIT = 12;
 
 export function RecipeCarousel(): JSX.Element {
   const [recipes, setRecipes] = useState<RecipeModel[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [httpError, setHttpError] = useState<string | null>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     axios
@@ -29,58 +27,6 @@ export function RecipeCarousel(): JSX.Element {
       });
   }, []);
 
-  useEffect(() => {
-    if (carouselRef.current) {
-      const carousel = new Carousel(carouselRef.current, {
-        interval: 3000,
-        pause: false,
-        ride: 'carousel',
-        wrap: true, // allow carousel to wrap around to the beginning
-      });
-
-      
-    }
-  }, [isLoading]);
-  
-
-  const renderRecipeCarousel = (): JSX.Element => (
-    <div className="carousel-inner" ref={carouselRef}>
-      {[...recipes, ...recipes, ...recipes].map(
-        (recipe: RecipeModel, index: number) => (
-          <div
-            className={`carousel-item ${index === 0 ? 'active' : ''}`}
-            key={index}
-          >
-            <div className="row d-flex justify-content-center align-items-center">
-              {[...Array(3)].map((_, i) => {
-                const recipeIndex = index * 3 + i;
-                if (recipes[recipeIndex]) {
-                  return (
-                    <RecipeHome
-                      key={recipeIndex}
-                      recipe={recipes[recipeIndex]}
-                    />
-                  );
-                }
-                return null;
-              })}
-            </div>
-          </div>
-        )
-      )}
-    </div>
-  );
-
-  const renderMobileCarousel = (): JSX.Element => (
-    <div className="d-lg-none mt-3">
-      <div className="row d-flex justify-content-center align-items-center">
-        {recipes.slice(0, 3).map((recipe: RecipeModel, index: number) => (
-          <RecipeHome key={recipe.id} recipe={recipe} />
-        ))}
-      </div>
-    </div>
-  );
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -88,10 +34,28 @@ export function RecipeCarousel(): JSX.Element {
   if (httpError) {
     return <div>{httpError}</div>;
   }
-  return (
-    <div className="container mt-5">
 
-      {renderRecipeCarousel()}
+  // Group recipes into chunks of three
+  const recipeChunks: RecipeModel[][] = [];
+  for (let i = 0; i < recipes.length; i += 3) {
+    recipeChunks.push(recipes.slice(i, i + 3));
+  }
+
+  return (
+    <div className="container mt-5 justify-content-center carousel-container">
+      <Carousel wrap controls={false} indicators={false}>
+        {recipeChunks.map((chunk: RecipeModel[], index: number) => (
+          <Carousel.Item key={index}>
+            <div className="row recipe-carousel-row">
+              {chunk.map((recipe: RecipeModel) => (
+                <div className="col-md-4" key={recipe.id}>
+                  <RecipeHome recipe={recipe} />
+                </div>
+              ))}
+            </div>
+          </Carousel.Item>
+        ))}
+      </Carousel>
     </div>
   );
 }
