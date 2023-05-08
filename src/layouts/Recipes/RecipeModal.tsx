@@ -1,6 +1,15 @@
 import React from 'react';
 import { RecipeModel } from '../../models/RecipeModel';
 import Modal from 'react-bootstrap/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faLeaf,
+  faCarrot,
+  faHeartbeat,
+  faBan,
+  faCheese,
+  faDollarSign,
+} from '@fortawesome/free-solid-svg-icons';
 
 interface RecipeModalProps {
   recipe: RecipeModel;
@@ -36,47 +45,89 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => {
               />
               <h5>Dietary Information</h5>
               <ul>
-                <li>Vegetarian: {vegetarian ? 'Yes' : 'No'}</li>
-                <li>Vegan: {vegan ? 'Yes' : 'No'}</li>
-                <li>Very Healthy: {veryHealthy ? 'Yes' : 'No'}</li>
-                <li>Gluten Free: {glutenFree ? 'Yes' : 'No'}</li>
-                <li>Dairy Free: {dairyFree ? 'Yes' : 'No'}</li>
-                <li>Cheap: {cheap ? 'Yes' : 'No'}</li>
+                <li>
+                  <FontAwesomeIcon
+                    icon={faLeaf}
+                    className={vegetarian ? 'diet-icon-active' : 'diet-icon'}
+                  />{' '}
+                  Vegetarian
+                </li>
+                <li>
+                  <FontAwesomeIcon
+                    icon={faCarrot}
+                    className={vegan ? 'diet-icon-active' : 'diet-icon'}
+                  />{' '}
+                  Vegan
+                </li>
+                <li>
+                  <FontAwesomeIcon
+                    icon={faHeartbeat}
+                    className={veryHealthy ? 'diet-icon-active' : 'diet-icon'}
+                  />{' '}
+                  Very Healthy
+                </li>
+                <li>
+                  <FontAwesomeIcon
+                    icon={faBan}
+                    className={glutenFree ? 'diet-icon-active' : 'diet-icon'}
+                  />{' '}
+                  Gluten Free
+                </li>
+                <li>
+                  <FontAwesomeIcon
+                    icon={faCheese}
+                    className={dairyFree ? 'diet-icon-active' : 'diet-icon'}
+                  />{' '}
+                  Dairy Free
+                </li>
+                <li>
+                  <FontAwesomeIcon
+                    icon={faDollarSign}
+                    className={cheap ? 'diet-icon-active' : 'diet-icon'}
+                  />{' '}
+                  Cheap
+                </li>
               </ul>
               <p style={{ fontSize: '14px' }}>{description}</p>
             </div>
             <div className="col-md-6">
               <h5>Instructions</h5>
-              {analyzedInstructions.length > 0 &&
-              analyzedInstructions[0].steps ? (
-                <ol>
-                  {analyzedInstructions[0].steps.map(
-                    (
-                      step: {
-                        step:
-                          | string
-                          | number
-                          | boolean
-                          | React.ReactElement<
-                              any,
-                              string | React.JSXElementConstructor<any>
-                            >
-                          | React.ReactFragment
-                          | React.ReactPortal
-                          | null
-                          | undefined;
-                      },
-                      index: React.Key | null | undefined
-                    ) => (
-                      <li key={index} style={{ fontSize: '14px' }}>
-                        {step.step}
-                      </li>
-                    )
-                  )}
-                </ol>
-              ) : (
-                <p style={{ fontSize: '14px' }}>No instructions available.</p>
-              )}
+              <div
+                style={{
+                  maxHeight: '300px',
+                  overflowY: 'auto',
+                  fontSize: '14px',
+                }}
+              >
+                {analyzedInstructions.length > 0 &&
+                analyzedInstructions[0].steps ? (
+                  <ol>
+                    {analyzedInstructions[0].steps.map(
+                      (
+                        step: {
+                          step:
+                            | string
+                            | number
+                            | boolean
+                            | React.ReactElement<
+                                any,
+                                string | React.JSXElementConstructor<any>
+                              >
+                            | React.ReactFragment
+                            | React.ReactPortal
+                            | null
+                            | undefined;
+                        },
+                        index: React.Key | null | undefined
+                      ) => (
+                        <li key={index}>{step.step}</li>
+                      )
+                    )}
+                  </ol>
+                ) : (
+                  <p>No instructions available.</p>
+                )}
+              </div>
             </div>
           </div>
         </div>

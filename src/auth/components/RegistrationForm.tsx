@@ -51,6 +51,7 @@ const RegisterForm = () => {
         } else {
           console.log('User data updated:', userData);
           console.log('User registered successfully');
+          navigate('/');
         }
       } else {
         console.log('Error registering user');

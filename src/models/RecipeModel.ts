@@ -2,6 +2,11 @@ import { RecipeIngredientModel } from './RecipeIngredientModel';
 import { UserModel } from './UserModel';
 
 export interface RecipeModel {
+  nutrition: any;
+  diets: any;
+  servings: number;
+  summary: string;
+  cuisines: any;
   spoonacularId: any;
   vegetarian: boolean;
   vegan: boolean;
