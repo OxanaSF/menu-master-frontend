@@ -1,6 +1,6 @@
 import React from 'react';
-import { RecipeModel } from '../../models/RecipeModel';
-import Modal from 'react-bootstrap/Modal';
+import { Modal } from 'react-bootstrap';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faLeaf,
@@ -10,14 +10,18 @@ import {
   faCheese,
   faDollarSign,
 } from '@fortawesome/free-solid-svg-icons';
+import { RecipeModel } from '../../models/RecipeModel';
 
-interface RecipeModalProps {
-  recipe: RecipeModel;
+interface SavedRecipeModalProps {
+  recipe: RecipeModel | null;
   onClose: () => void;
 }
 
-const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => {
-  if (!recipe || !recipe.analyzedInstructions) {
+const SavedRecipeModal: React.FC<SavedRecipeModalProps> = ({
+  recipe,
+  onClose,
+}) => {
+  if (!recipe) {
     return null;
   }
 
@@ -28,24 +32,25 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => {
     glutenFree,
     dairyFree,
     cheap,
-    analyzedInstructions,
-    image,
-    description,
-    title,
+    instructions,
+    imageUrl,
+    name,
   } = recipe;
+
+  console.log(recipe);
 
   return (
     <Modal show onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
+        <Modal.Title>{name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="container">
           <div className="row">
             <div className="col-md-6">
               <img
-                src={image}
-                alt={title}
+                src={imageUrl}
+                alt={name}
                 style={{ width: '80%', marginBottom: '20px' }}
               />
               <h5>Dietary Information</h5>
@@ -93,35 +98,15 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => {
                   Cheap
                 </li>
               </ul>
-              <p style={{ fontSize: '14px' }}>{description}</p>
             </div>
             <div className="col-md-6">
               <h5>Instructions</h5>
               <div className="modal-text-overlay">
-                {analyzedInstructions.length > 0 &&
-                analyzedInstructions[0].steps ? (
+                {Array.isArray(instructions) && instructions.length > 0 ? (
                   <ol>
-                    {analyzedInstructions[0].steps.map(
-                      (
-                        step: {
-                          step:
-                            | string
-                            | number
-                            | boolean
-                            | React.ReactElement<
-                                any,
-                                string | React.JSXElementConstructor<any>
-                              >
-                            | React.ReactFragment
-                            | React.ReactPortal
-                            | null
-                            | undefined;
-                        },
-                        index: React.Key | null | undefined
-                      ) => (
-                        <li key={index}>{step.step}</li>
-                      )
-                    )}
+                    {instructions.map((step: string, index: number) => (
+                      <li key={index}>{step}</li>
+                    ))}
                   </ol>
                 ) : (
                   <p>No instructions available.</p>
@@ -135,4 +120,4 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => {
   );
 };
 
-export default RecipeModal;
+export default SavedRecipeModal;
