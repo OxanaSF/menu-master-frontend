@@ -50,6 +50,7 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
     setShowModal(false);
   };
 
+
   return (
     <div
       className="col-xs-6 col-sm-6 col-md-4 col-lg-3 searched-recipes-list"

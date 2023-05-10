@@ -34,7 +34,7 @@ export function Recipes(): JSX.Element {
 
   const onFormSubmit = async (searchResults: RecipeModel[]) => {
     setSearchedRecipes(searchResults);
-    console.log(searchedRecipes);
+    console.log("searchedRecipes:", searchedRecipes);
     console.log(searchSuccess);
   };
 
@@ -70,21 +70,24 @@ export function Recipes(): JSX.Element {
       return null;
     } else {
       return (
-        <div >
+        <div>
           <div className="row d-flex justify-content-center">
-            {searchedRecipes.map((recipe: RecipeModel, index: number) => (
-              <SearchedRecipe
-                key={index}
-                image={recipe.image}
-                title={recipe.title || ''}
-                recipe={recipe}
-              />
-            ))}
+            {searchedRecipes.map((recipe: RecipeModel, index: number) => {
+              return (
+                <SearchedRecipe
+                  key={index}
+                  image={recipe.image}
+                  title={recipe.title || ''}
+                  recipe={recipe}
+                />
+              );
+            })}
           </div>
         </div>
       );
     }
   };
+  
 
   if (isLoading) {
     return <div>Loading...</div>;

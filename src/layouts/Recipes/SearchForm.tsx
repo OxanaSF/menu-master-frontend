@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { RecipeModel } from '../../models/RecipeModel';
 
 interface SearchFormProps {
-  onFormSubmit: (formData: RecipeModel[]) => void; 
-  setSearchSuccess: React.Dispatch<React.SetStateAction<boolean>>; 
+  onFormSubmit: (formData: RecipeModel[]) => void;
+  setSearchSuccess: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({
@@ -13,16 +13,14 @@ const SearchForm: React.FC<SearchFormProps> = ({
   const [query, setQuery] = useState('');
   const [selectedRecipe, setSelectedRecipe] = useState<RecipeModel | null>(
     null
-  ); 
+  );
 
   const searchRecipes = async () => {
-    const apiKey = '';
-    const apiUrl = `https://api.spoonacular.com/recipes/complexSearch`;
+    const apiUrl = 'http://localhost:8080/recipes/complexSearch';
 
     const params = {
-      apiKey,
       query,
-      number: '20',
+      limit: '20',
       instructionsRequired: 'true',
       addRecipeInformation: 'true',
     };
@@ -30,9 +28,12 @@ const SearchForm: React.FC<SearchFormProps> = ({
     const queryString = new URLSearchParams(params).toString();
     const url = `${apiUrl}?${queryString}`;
 
+    console.log(url);
+
     try {
       const response = await fetch(url);
       const data = await response.json();
+      console.log(data);
       const searchResults = data.results || [];
       console.log(searchResults);
       onFormSubmit(searchResults);

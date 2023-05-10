@@ -6,11 +6,14 @@ export class RecipeDto {
   cuisineType: string | undefined;
   description: string | undefined;
   servingSize: number | null | undefined;
-  imageUrl: string | undefined;
+  imageUrl: string | undefined | ' ';
   nutritionalInformation: string | undefined;
-  instructions: string | undefined;
+  instructions: string[] | undefined;
   spoonacularId: number | undefined;
   servingsSize: number | undefined;
+  vegetarian: any;
+  vegan: any;
+  veryHealthy: any;
 
   static fromRecipeModel(recipe: RecipeModel): RecipeDto {
     const recipeDto = new RecipeDto();
@@ -23,10 +26,10 @@ export class RecipeDto {
     recipeDto.imageUrl = recipe.image || '';
     recipeDto.spoonacularId = recipe.id !== null ? recipe.id : undefined;
 
-    const steps = recipe.analyzedInstructions?.[0]?.steps || [];
-    recipeDto.instructions = JSON.stringify(
-      steps.map((step: { step: any }) => step.step) || 'No instructions'
-    );
+    // const steps = recipe.analyzedInstructions?.[0]?.steps || [];
+    // recipeDto.instructions = JSON.stringify(
+    //   steps.map((step: { step: any }) => step.step) || 'No instructions'
+    // );
 
     const nutritionalInfo: { [key: string]: string } = {};
     if (recipe.diets?.includes('gluten free'))
@@ -42,5 +45,17 @@ export class RecipeDto {
         : 'No nutritional information';
 
     return recipeDto;
+  }
+
+  static formatInstructions(instructions: string[] | undefined): string {
+    if (!instructions || instructions.length === 0) {
+      return 'No instructions available.';
+    }
+
+    return instructions
+      .map((instruction, index) => {
+        return `${index + 1}. ${instruction}`;
+      })
+      .join('\n');
   }
 }

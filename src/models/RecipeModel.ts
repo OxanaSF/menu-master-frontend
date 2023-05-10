@@ -17,11 +17,11 @@ export interface RecipeModel {
   analyzedInstructions: any;
   id: number | null | undefined;
   title: string | undefined;
-  image: any;
+  image: string;
   recipe_id: number;
   name: string;
   cuisineType: string;
-  instructions: string;
+  instructions: string[]; 
   description: string;
   servingSize: number;
   imageUrl: string;

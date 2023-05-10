@@ -17,6 +17,10 @@ interface RecipeModalProps {
 }
 
 const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, onClose }) => {
+  if (!recipe || !recipe.analyzedInstructions) {
+    return null;
+  }
+
   const {
     vegetarian,
     vegan,

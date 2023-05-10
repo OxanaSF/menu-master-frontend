@@ -15,6 +15,7 @@ const RegisterForm = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
@@ -51,6 +52,7 @@ const RegisterForm = () => {
         } else {
           console.log('User data updated:', userData);
           console.log('User registered successfully');
+          setSuccessMessage('User registered successfully');
           navigate('/');
         }
       } else {
@@ -75,6 +77,7 @@ const RegisterForm = () => {
       >
         <h2 className="text-center mb-4">Register</h2>
         {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+        {successMessage && <Alert variant="success">{successMessage}</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
