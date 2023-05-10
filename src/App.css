@@ -155,3 +155,11 @@ li {
   border: solid 2px black;
   margin: 0 20px;
 }
+
+/* Modal */
+
+.modal-text-overlay {
+  max-height: 300px;
+  font-size: 14px;
+  overflow-y: auto !important;
+}

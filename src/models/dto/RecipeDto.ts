@@ -26,11 +26,7 @@ export class RecipeDto {
     recipeDto.imageUrl = recipe.image || '';
     recipeDto.spoonacularId = recipe.id !== null ? recipe.id : undefined;
 
-    // const steps = recipe.analyzedInstructions?.[0]?.steps || [];
-    // recipeDto.instructions = JSON.stringify(
-    //   steps.map((step: { step: any }) => step.step) || 'No instructions'
-    // );
-
+  
     const nutritionalInfo: { [key: string]: string } = {};
     if (recipe.diets?.includes('gluten free'))
       nutritionalInfo['glutenFree'] = 'Gluten-Free';
@@ -47,15 +43,60 @@ export class RecipeDto {
     return recipeDto;
   }
 
-  static formatInstructions(instructions: string[] | undefined): string {
-    if (!instructions || instructions.length === 0) {
-      return 'No instructions available.';
-    }
 
-    return instructions
-      .map((instruction, index) => {
-        return `${index + 1}. ${instruction}`;
-      })
-      .join('\n');
-  }
+  static transformRecipeData = (data: any): RecipeModel => {
+    // console.log('data.instructions:', data.instructions);
+  
+    const recipe: RecipeModel = {
+      id: data.id,
+      title: data.title,
+      description: data.description,
+      imageUrl: data.image,
+      instructions: data.analyzedInstructions
+      ? data.analyzedInstructions.flatMap((section: any) =>
+          section.steps.map((step: any) => step.step)
+        )
+      : [],
+      cuisineType: data.cuisines,
+      servings: data.servings,
+      nutritionalInformation: data.nutrition,
+      nutrition: undefined,
+      diets: undefined,
+      summary: '',
+      cuisines: undefined,
+      spoonacularId: undefined,
+      vegetarian: false,
+      vegan: false,
+      veryHealthy: false,
+      glutenFree: false,
+      dairyFree: false,
+      cheap: false,
+      analyzedInstructions: undefined,
+      image: '',
+      recipe_id: 0,
+      name: '',
+      servingSize: 0,
+      recipeIngredients: [],
+      users: [],
+    };
+  
+    // console.log('recipe:', recipe);
+    // console.log('instructions:', recipe.instructions);
+    
+  
+    return recipe;
+  };
+
+
+  // static formatInstructions(instructions: string[] | undefined): string {
+  //   if (!instructions || instructions.length === 0) {
+  //     return 'No instructions available.';
+  //   }
+
+  //   return instructions
+  //     .map((instruction, index) => {
+  //       return `${index + 1}. ${instruction}`;
+  //     })
+  //     .join('\n');
+  // }
 }

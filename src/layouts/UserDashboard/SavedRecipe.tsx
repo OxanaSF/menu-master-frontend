@@ -1,16 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { RecipeModel } from '../../models/RecipeModel';
-import { Modal } from 'react-bootstrap';
-import SavedRecipeModal from '../Recipes/SavedRecipeModal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faLeaf,
-  faCarrot,
-  faHeartbeat,
-  faBan,
-  faCheese,
-  faDollarSign,
-} from '@fortawesome/free-solid-svg-icons';
+import { RecipeDto } from '../../models/dto/RecipeDto';
+import SavedRecipeModal from './SavedRecipeModal';
 
 interface SavedRecipeProps {
   recipe: RecipeModel;
@@ -19,10 +10,12 @@ interface SavedRecipeProps {
 
 const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose }) => {
   const [showModal, setShowModal] = useState(false);
+  const [selectedRecipe, setSelectedRecipe] = useState<RecipeModel | null>(
+    null
+  );
 
   const handleOpenModal = () => {
     setShowModal(true);
-    console.log('showModal: ', showModal);
   };
 
   const handleCloseModal = () => {
@@ -30,12 +23,43 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose }) => {
     console.log('showModal: ', showModal);
   };
 
+  const fetchRecipeById = async (recipeId: number) => {
+    if (!recipeId) {
+      console.log('Recipe ID is invalid');
+      return;
+    }
+
+    try {
+      console.log('Fetching recipe from Spoonacular API...');
+      const apiKey = '';
+      const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information`;
+      const params = new URLSearchParams({
+        apiKey,
+        includeNutrition: 'true',
+      });
+
+      const response = await fetch(`${apiUrl}?${params}`);
+      if (response.ok) {
+        const data = await response.json();
+        const recipe = RecipeDto.transformRecipeData(data);
+        setSelectedRecipe(recipe);
+        handleOpenModal();
+      } else {
+        throw new Error('Failed to fetch recipe');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div key={recipe.id} className="col-12 col-md-4 mb-3">
       <div
         className="card"
         style={{ cursor: 'pointer' }}
-        onClick={handleOpenModal}
+        onClick={() => {
+          fetchRecipeById(recipe.spoonacularId);
+        }}
       >
         <img
           src={recipe.imageUrl}
@@ -56,9 +80,10 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose }) => {
           </h6>
         </div>
       </div>
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <SavedRecipeModal recipe={recipe} onClose={handleCloseModal} />
-      </Modal>
+
+      {showModal && (
+        <SavedRecipeModal recipe={selectedRecipe} onClose={handleCloseModal} />
+      )}
     </div>
   );
 };
