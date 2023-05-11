@@ -1,44 +1,77 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import SavedRecipe from '../UserDashboard/SavedRecipe';
+import axios from 'axios';
+import { RecipeModel } from '../../models/RecipeModel';
+import { useSelector } from 'react-redux';
+import { selectUserId } from '../../store/selectors/userSelectors';
 
 const FoodPlanner = () => {
-  const daysOfWeek = ['Mon', 'Tues', 'Wed', 'Thur', 'Fr', 'Sat', 'Sun'];
-  const mealCategories = ['Breakfast', 'Brunch', 'Lunch', 'Snack', 'Dinner'];
+  const [startDate, setStartDate] = useState('');
+  const [weeklyPlan, setWeeklyPlan] = useState<RecipeModel[]>([]);
+  const userId = useSelector(selectUserId);
 
-  const columnWidth = Math.floor(12 / (daysOfWeek.length + 1));
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setStartDate(event.target.value);
+  };
+
+  const fetchWeeklyPlan = async () => {
+    console.log("Fetching weekly plan...")
+    console.log("userId: ", userId)
+    console.log("startDate: ", startDate)
+    try {
+      const apiKey = ""; 
+      const url = `https://api.spoonacular.com/mealplanner/${userId}/week/${startDate}?hash=${userId}&apiKey=${apiKey}`;
+      const response = await axios.get(url);
+      if (response.status === 200) {
+        const data = response.data;
+        setWeeklyPlan(data);
+      } else {
+        throw new Error('Failed to fetch weekly plan');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    fetchWeeklyPlan();
+  };
 
   return (
     <Container className="my-5">
-      <h2 className="text-center mb-4">Weekly Food Planner</h2>
-      <Row className="text-center">
-        <Col xs={12} md={columnWidth} className="mb-4"></Col>{' '}
-        {/* Empty column */}
-        {daysOfWeek.map((day) => (
-          <Col key={day} xs={12} md={columnWidth} className="mb-4">
-            <h4>{day}</h4>
-          </Col>
+      <Row>
+        <Col>
+          <h1>Food Planner</h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="startDate">
+              <Form.Label>Start Date (yyyy-mm-dd)</Form.Label>
+              <Form.Control
+                type="text"
+                value={startDate}
+                onChange={handleInputChange}
+                required
+              />
+            </Form.Group>
+            <Button type="submit">Fetch Weekly Plan</Button>
+          </Form>
+        </Col>
+      </Row>
+      <Row>
+        {weeklyPlan.map((recipe) => (
+          <SavedRecipe
+            key={recipe.id}
+            recipe={recipe}
+            onClose={() => {}}
+          />
         ))}
       </Row>
-      {mealCategories.map((category) => (
-        <Row key={category}>
-          <Col xs={12} md={columnWidth} className="mb-4">
-            <h4>{category}</h4>
-          </Col>
-          {daysOfWeek.map((day) => (
-            <Col
-              key={`${day}-${category}`}
-              xs={12}
-              md={columnWidth}
-              className="mb-4"
-            >
-              <div className="food-card">
-                {/* Render the food items or meal plans for each day and category */}
-                {/* Example: <p>{foodItems[day][category]}</p> */}
-              </div>
-            </Col>
-          ))}
-        </Row>
-      ))}
     </Container>
   );
 };

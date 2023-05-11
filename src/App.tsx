@@ -19,25 +19,23 @@ const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    // Simulate the loading process
     setTimeout(() => {
       setIsLoaded(true);
-    }, 2000); // Adjust the duration as needed
+    }, 2000);
   }, []);
 
   return (
     <BrowserRouter>
       <div className={`app-container ${isLoaded ? 'loaded' : ''}`}>
-        <div className="loading-overlay">
-          {/* Add your loading animation here */}
-          {/* Example: <div className="spinner"></div> */}
-        </div>
+        <div className="loading-overlay"></div>
         <Navbar />
         <div className={`container-main ${isLoaded ? 'loaded' : ''}`}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/recipes" element={<Recipes />} />
-            {Boolean(isLoggedIn) && <Route path="/dashboard/:id" element={<UserDashboard />} />}
+            {Boolean(isLoggedIn) && (
+              <Route path="/dashboard/:id" element={<UserDashboard />} />
+            )}
 
             <Route path="/plan-meals" element={<PlanMeals />} />
             <Route path="/user-registration" element={<RegistrationForm />} />

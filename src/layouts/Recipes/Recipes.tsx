@@ -2,75 +2,69 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import SearchForm from './SearchForm';
 import { Recipe } from '../../components/Recipe';
 import SearchedRecipe from './SearchedRecipe';
 import { RecipeModel } from '../../models/RecipeModel';
+import SearchForm from './SearchForm';
 
-const API_BASE_URL_RANDOM = 'http://localhost:8080/recipes';
-const RECIPES_LIMIT = 21;
+
 
 export function Recipes(): JSX.Element {
-  const [recipes, setRecipes] = useState<RecipeModel[]>([]);
   const [searchedRecipes, setSearchedRecipes] = useState<RecipeModel[]>([]);
   const [searchSuccess, setSearchSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [httpError, setHttpError] = useState<string | null>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
+
+
+  const [query, setQuery] = useState('');
+
 
   useEffect(() => {
-    axios
-      .get(API_BASE_URL_RANDOM, { params: { limit: RECIPES_LIMIT } })
-      .then((response) => {
-        setRecipes(response.data);
+    const searchRecipes = async () => {
+      const apiUrl = 'http://localhost:8080/recipes/complexSearch';
+
+      const params = {
+        query: query || 'salad',
+        limit: '20',
+        instructionsRequired: 'true',
+        addRecipeInformation: 'true',
+      };
+
+      const queryString = new URLSearchParams(params).toString();
+      const url = `${apiUrl}?${queryString}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        setSearchedRecipes(data.results);
         setIsLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
+      } catch (error) {
+        console.error('Error fetching recipes:', error);
         setIsLoading(false);
-        setHttpError('An error occurred while fetching the recipes.');
-      });
+        setHttpError('Error fetching recipes');
+      }
+    };
+    searchRecipes();
   }, []);
 
   const onFormSubmit = async (searchResults: RecipeModel[]) => {
     setSearchedRecipes(searchResults);
-    console.log("searchedRecipes:", searchedRecipes);
+    console.log('searchedRecipes:', searchResults);
     console.log(searchSuccess);
   };
 
-  const renderGallery = (): JSX.Element => (
-    <div className="carousel-inner" ref={carouselRef}>
-      {Array.from({ length: recipes.length }).map((_, index) => (
-        <div
-          key={index}
-          className="row d-flex justify-content-center align-items-center"
-        >
-          {Array.from({ length: 3 }).map((_, i) => {
-            const recipeIndex = index * 3 + i;
-            if (recipes[recipeIndex]) {
-              return (
-                <Recipe
-                  key={recipes[recipeIndex].id}
-                  recipe={recipes[recipeIndex]}
-                  onSelect={(recipe: RecipeModel) => {
-                    throw new Error('Function not implemented.');
-                  }}
-                />
-              );
-            }
-            return null;
-          })}
-        </div>
-      ))}
-    </div>
-  );
-
   const renderSearchedGallery = (): JSX.Element | null => {
-    if (searchedRecipes.length === 0) {
-      return null;
+    if (isLoading) {
+      return (
+        <div className="text-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      );
     } else {
       return (
-        <div>
+        <div style={{ width: '80%', margin: 'auto' }}>
           <div className="row d-flex justify-content-center">
             {searchedRecipes.map((recipe: RecipeModel, index: number) => {
               return (
@@ -87,15 +81,6 @@ export function Recipes(): JSX.Element {
       );
     }
   };
-  
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (httpError) {
-    return <div>{httpError}</div>;
-  }
 
   return (
     <div className="mt-5">
@@ -104,7 +89,6 @@ export function Recipes(): JSX.Element {
         setSearchSuccess={setSearchSuccess}
       />
       {renderSearchedGallery()}
-      {!searchSuccess && renderGallery()}
     </div>
   );
 }

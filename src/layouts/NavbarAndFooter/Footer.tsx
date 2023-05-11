@@ -55,25 +55,29 @@ export const Footer = () => {
 
           <div className="col-md-2 mb-4">
             <h5 className="gray-link">Follow Us</h5>
-            <ul className="list-unstyled">
+            <ul
+              className="list-unstyled justify-content-center"
+              style={{ marginLeft: '35px' }}
+            >
               <li>
                 <a href="#" className="social-icon gray-link">
-                  <i className="fab fa-facebook-f"></i>
+                  <i className="fab fa-facebook-f fa-lg"></i>
                 </a>
               </li>
               <li>
                 <a href="#" className="social-icon gray-link">
-                  <i className="fab fa-twitter"></i>
+                  <i className="fab fa-twitter fa-lg"></i>
                 </a>
               </li>
               <li>
                 <a href="#" className="social-icon gray-link">
-                  <i className="fab fa-instagram"></i>
+                  <i className="fab fa-instagram fa-lg"></i>
                 </a>
               </li>
             </ul>
           </div>
         </div>
+
         <div className="row gray-link">
           <div className="col-12 text-center">
             <hr className="mt-4 mb-3 " />
