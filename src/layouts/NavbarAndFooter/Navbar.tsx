@@ -39,6 +39,12 @@ export const Navbar = () => {
     }
   };
 
+
+  const handleRecipesLink = () => {
+    navigate('/recipes');
+    window.location.reload();
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark main-color py-3">
       <div className="container-fluid">
@@ -59,7 +65,7 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link to="/recipes" className="nav-link">
+              <Link to="/recipes" className="nav-link" onClick={handleRecipesLink}>
                 Recipes
               </Link>
             </li>

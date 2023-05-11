@@ -10,7 +10,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
   onFormSubmit,
   setSearchSuccess,
 }) => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState('salad');
   const [selectedRecipe, setSelectedRecipe] = useState<RecipeModel | null>(
     null
   );
@@ -60,12 +60,19 @@ const SearchForm: React.FC<SearchFormProps> = ({
             <input
               type="text"
               className="form-control"
-              value={query}
+              value={query === 'salad' ? '' : query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search for recipes..."
+             
             />
             <div className="input-group-append">
-              <button type="submit" className="btn main-color text-white ml-2">
+              <button
+                type="submit"
+                className="btn main-color text-white ml-2"
+                style={{
+                  marginLeft: '10px',
+                }}
+              >
                 Search
               </button>
             </div>
