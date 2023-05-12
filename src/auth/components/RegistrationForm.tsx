@@ -53,7 +53,7 @@ const RegisterForm = () => {
           console.log('User data updated:', userData);
           console.log('User registered successfully');
           setSuccessMessage('User registered successfully');
-          navigate('/');
+          navigate('/user-login');
         }
       } else {
         console.log('Error registering user');

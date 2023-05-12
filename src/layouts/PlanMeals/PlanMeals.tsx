@@ -16,11 +16,11 @@ const FoodPlanner = () => {
   };
 
   const fetchWeeklyPlan = async () => {
-    console.log("Fetching weekly plan...")
-    console.log("userId: ", userId)
-    console.log("startDate: ", startDate)
+    console.log('Fetching weekly plan...');
+    console.log('userId: ', userId);
+    console.log('startDate: ', startDate);
     try {
-      const apiKey = ""; 
+      const apiKey = '';
       const url = `https://api.spoonacular.com/mealplanner/${userId}/week/${startDate}?hash=${userId}&apiKey=${apiKey}`;
       const response = await axios.get(url);
       if (response.status === 200) {
@@ -33,7 +33,6 @@ const FoodPlanner = () => {
       console.log(error);
     }
   };
-  
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -69,6 +68,9 @@ const FoodPlanner = () => {
             key={recipe.id}
             recipe={recipe}
             onClose={() => {}}
+            setUpdateDashboard={function (value: boolean): void {
+              throw new Error('Function not implemented.');
+            }}
           />
         ))}
       </Row>

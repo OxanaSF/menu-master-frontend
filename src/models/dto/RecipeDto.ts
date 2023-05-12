@@ -8,7 +8,7 @@ export class RecipeDto {
   servingSize: number | null | undefined;
   imageUrl: string | undefined | ' ';
   nutritionalInformation: string | undefined;
-  instructions: string[] | undefined;
+  instructions: string | undefined;
   spoonacularId: number | undefined;
   servingsSize: number | undefined;
   vegetarian: any;
@@ -25,6 +25,7 @@ export class RecipeDto {
     recipeDto.servingSize = recipe.servings || 0;
     recipeDto.imageUrl = recipe.image || '';
     recipeDto.spoonacularId = recipe.id !== null ? recipe.id : undefined;
+    recipeDto.instructions = JSON.stringify(recipe.analyzedInstructions);
 
   
     const nutritionalInfo: { [key: string]: string } = {};
@@ -87,16 +88,32 @@ export class RecipeDto {
     return recipe;
   };
 
+  static fromRecipeModelToSavedRecipe(recipe: any): RecipeModel {
+    const recipeDto = new RecipeDto();
 
-  // static formatInstructions(instructions: string[] | undefined): string {
-  //   if (!instructions || instructions.length === 0) {
-  //     return 'No instructions available.';
-  //   }
+    recipeDto.recipeId = recipe.id;
+    recipeDto.name = recipe.title;
+    recipeDto.cuisineType = recipe.cuisines?.join(', ') || 'No cuisine type';
+    recipeDto.description = recipe.summary || 'No description';
+    recipeDto.servingSize = recipe.servings || 0;
+    recipeDto.imageUrl = recipe.image || '';
+    recipeDto.spoonacularId = recipe.id !== null ? recipe.id : undefined;
+    recipeDto.instructions = JSON.stringify(recipe.analyzedInstructions);
 
-  //   return instructions
-  //     .map((instruction, index) => {
-  //       return `${index + 1}. ${instruction}`;
-  //     })
-  //     .join('\n');
-  // }
+    const nutritionalInfo: { [key: string]: string } = {};
+    if (recipe.diets?.includes('gluten free'))
+      nutritionalInfo['glutenFree'] = 'Gluten-Free';
+    if (recipe.diets?.includes('dairy free'))
+      nutritionalInfo['dairyFree'] = 'Dairy-Free';
+    if (recipe.diets?.includes('pescatarian'))
+      nutritionalInfo['pescatarian'] = 'Pescatarian';
+
+    recipeDto.nutritionalInformation =
+      Object.keys(nutritionalInfo).length > 0
+        ? JSON.stringify(nutritionalInfo)
+        : 'No nutritional information';
+
+    return recipe;
+}
+
 }

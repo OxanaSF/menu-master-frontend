@@ -54,12 +54,13 @@ export const Recipe = ({ recipe, onSelect, children }: RecipeProps) => {
   };
 
   return (
-    <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-3">
+    <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-3" 
+    
+    >
       <div className="text-center">
         <div
           style={{
-            height: '150px',
-            overflow: 'hidden',
+            minHeight: '200px'
           }}
         >
           <img

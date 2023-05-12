@@ -42,7 +42,7 @@ export const Navbar = () => {
 
   const handleRecipesLink = () => {
     navigate('/recipes');
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (

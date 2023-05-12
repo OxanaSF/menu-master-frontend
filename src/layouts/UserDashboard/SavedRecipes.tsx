@@ -18,8 +18,9 @@ const SavedRecipes = ({ recipes }: SavedRecipesProps) => {
                 recipe={recipe}
                 onClose={function (): void {
                   throw new Error('Function not implemented.');
-                }}
-              />
+                } } setUpdateDashboard={function (value: boolean): void {
+                  throw new Error('Function not implemented.');
+                } }              />
             ))}
           </div>
         </div>

@@ -32,6 +32,7 @@ export const UserDashboard = () => {
 
         if (response.ok) {
           const data = await response.json();
+          console.log(data);
           setRecipes(data);
           console.log(data);
         } else {
@@ -50,6 +51,9 @@ export const UserDashboard = () => {
       navigate('/');
     }
   }, [userId, navigate]);
+
+
+
   return (
     <div
       className="container container-dash"
@@ -68,7 +72,7 @@ export const UserDashboard = () => {
         </div>
 
         {recipes && Array.isArray(recipes) && recipes.length > 0 && (
-          <SavedRecipes recipes={recipes} />
+          <SavedRecipes recipes={recipes}/>
         )}
       </div>
     </div>

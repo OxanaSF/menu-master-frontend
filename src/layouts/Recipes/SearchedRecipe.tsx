@@ -28,6 +28,7 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
 
   const handleSave = () => {
     const recipeDto = RecipeDto.fromRecipeModel(recipe);
+    console.log(recipeDto)
     const spoonacularId = recipe.id;
     console.log(recipe);
     console.log('Recipe instructions: ', recipe.instructions);
@@ -77,7 +78,7 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
         )}
         {title && <p>{title}</p>}
 
-        {userId && (
+       
           <button
             className="btn main-color text-white mb-5 searched-recipe-btn"
             onClick={handleSave}
@@ -87,9 +88,9 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
           >
             Save
           </button>
-        )}
+   
 
-        {!userId && (
+        {/* {!userId && (
           <button
             className="btn main-color text-white mb-5"
             onClick={handleNavigate}
@@ -99,7 +100,7 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
           >
             Save
           </button>
-        )}
+        )} */}
 
         <button
           className="btn main-color  text-white mb-5"
