@@ -1,4 +1,4 @@
-# Project Proposal
+# About the Project MENU MASTER
 
 A web application that allows users to input their dietary restrictions, preferred cuisine types, and favorite recipes, as well as store a grocery list and individual menu. The application will collect recipe information from the external Spoonacular API and integrate with Java Spring Boot, React.js, TypeScript React Router, and Redux frameworks.
 
