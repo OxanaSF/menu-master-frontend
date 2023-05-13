@@ -23,12 +23,12 @@ const FoodPlanner = () => {
   const generateUserCredentials = () => {
     axios
       .post(
-        `https://api.spoonacular.com/users/connect?apiKey=`,
+        ``,
         {
-          username: 'ovtyutcheva@gmail@gmail.com',
+          username: '',
           firstName: 'Oxana',
           lastName: 'Howard',
-          email: 'ovtyutcheva@gmail@gmail.com',
+          email: '',
         }
       )
       .then((response) => {
@@ -43,7 +43,7 @@ const FoodPlanner = () => {
     try {
       const apiKey = '';
       const hash = '';
-      const userName = '';
+      const userName = 'ovtyutchevagmailgmail-com2';
 
       const url = `https://api.spoonacular.com/mealplanner/${userName}/templates/${weeklyPlanId}?hash=${hash}&apiKey=${apiKey}`;
       const response = await axios.get(url);

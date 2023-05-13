@@ -19,7 +19,7 @@ export const PLANS = [
     },
     {
       id: 409,
-      name: 'week 1 Vegan',
+      name: 'Vegan',
       description:
         'is a meal plan designed for individuals following a vegan lifestyle, incorporating plant-based foods and excluding all animal products, including meat, dairy, eggs, and honey',
     },
@@ -43,13 +43,13 @@ export const PLANS = [
     },
     {
       id: 217,
-      name: 'smoothie and salad week',
+      name: 'Smoothie and salad week',
       description:
         'meal plan that emphasizes the consumption of nutrient-rich smoothies and salads, providing a refreshing and health-conscious approach to eating with a focus on fruits, vegetables, and greens',
     },
     {
       id: 1745,
-      name: 'easy-carb-week',
+      name: 'Easy-carb-week',
       description:
         'a meal plan is designed to provide simple and convenient meals with a focus on carbohydrate-rich foods, offering quick and satisfying options for individuals seeking an easy approach to their carbohydrate intake',
     },

@@ -5,14 +5,17 @@ import SavedRecipeModal from './SavedRecipeModal';
 import { useSelector } from 'react-redux';
 import { selectUserId } from '../../store/selectors/userSelectors';
 
-
 interface SavedRecipeProps {
   recipe: RecipeModel;
   onClose: () => void;
   setUpdateDashboard: (value: boolean) => void;
 }
 
-const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose, setUpdateDashboard }) => {
+const SavedRecipe: React.FC<SavedRecipeProps> = ({
+  recipe,
+  onClose,
+  setUpdateDashboard,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState<RecipeModel | null>(
     null
@@ -45,7 +48,6 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose, setUpdateDas
       if (response.ok) {
         console.log('Recipe deleted successfully');
         setUpdateDashboard(true);
-      
       } else {
         console.log('Failed to delete recipe:', response.status);
       }
@@ -77,7 +79,7 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose, setUpdateDas
 
     try {
       console.log('Fetching recipe from Spoonacular API...');
-      const apiKey = '';
+      const apiKey = '5';
       const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information`;
       const params = new URLSearchParams({
         apiKey,
@@ -97,8 +99,6 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose, setUpdateDas
       console.log(error);
     }
   };
-
-
 
   return (
     <div key={recipe.id} className="col-12 col-md-4 mb-3">
