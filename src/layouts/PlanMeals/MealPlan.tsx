@@ -42,6 +42,17 @@ const MealPlan: React.FC<MealPlanProps> = ({
   return (
     <Container className="my-5">
       <Row>
+        <Row className="justify-content-end">
+          <Col xs="auto">
+            <Button
+              onClick={() => setWeeklyPlanIsSet(false)}
+              className="btn main-color btn-lg text-white meal-plan-back-to-meals-btn"
+            >
+              Back to Meal Plans
+            </Button>
+          </Col>
+        </Row>
+
         <Col>
           <Row>
             <Col>
@@ -49,11 +60,6 @@ const MealPlan: React.FC<MealPlanProps> = ({
               {weeklyPlanData && (
                 <h3 className="meal-plan-title">{weeklyPlanData.name}</h3>
               )}
-            </Col>
-            <Col>
-              <Button onClick={() => setWeeklyPlanIsSet(false)}>
-                Back to Meal Plans
-              </Button>
             </Col>
           </Row>
 

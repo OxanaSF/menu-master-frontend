@@ -23,12 +23,12 @@ const FoodPlanner = () => {
   const generateUserCredentials = () => {
     axios
       .post(
-        `https://api.spoonacular.com/users/connect?apiKey=`,
+        ``,
         {
-          username: 'ovtyutcheva@gmail@gmail.com',
+          username: '',
           firstName: 'Oxana',
           lastName: 'Howard',
-          email: 'ovtyutcheva@gmail@gmail.com',
+          email: '',
         }
       )
       .then((response) => {
