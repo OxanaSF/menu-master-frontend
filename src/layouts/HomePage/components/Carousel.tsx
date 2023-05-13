@@ -28,14 +28,13 @@ export function RecipeCarousel(): JSX.Element {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className='text-center'>Loading...</div>;
   }
 
   if (httpError) {
     return <div>{httpError}</div>;
   }
 
-  // Group recipes into chunks of three
   const recipeChunks: RecipeModel[][] = [];
   for (let i = 0; i < recipes.length; i += 3) {
     recipeChunks.push(recipes.slice(i, i + 3));

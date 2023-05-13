@@ -28,7 +28,7 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
 
   const handleSave = () => {
     const recipeDto = RecipeDto.fromRecipeModel(recipe);
-    console.log(recipeDto)
+    console.log(recipeDto);
     const spoonacularId = recipe.id;
     console.log(recipe);
     console.log('Recipe instructions: ', recipe.instructions);
@@ -62,11 +62,8 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
     <div
       className="col-xs-6 col-sm-6 col-md-4 col-lg-3 searched-recipes-list"
       key={key}
-      style={{
-        minHeight: '300px',
-      }}
-       >
-      <div className="text-center">
+    >
+      <div className="text-center recipe-card-container">
         {image && (
           <img
             src={image}
@@ -76,9 +73,9 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
             }}
           />
         )}
-        {title && <p>{title}</p>}
+        <div style={{ height: '70px' }}>{title && <p>{title}</p>}</div>
 
-       
+        {userId && (
           <button
             className="btn main-color text-white mb-5 searched-recipe-btn"
             onClick={handleSave}
@@ -88,9 +85,9 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
           >
             Save
           </button>
-   
+        )}
 
-        {/* {!userId && (
+        {!userId && (
           <button
             className="btn main-color text-white mb-5"
             onClick={handleNavigate}
@@ -100,7 +97,7 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
           >
             Save
           </button>
-        )} */}
+        )}
 
         <button
           className="btn main-color  text-white mb-5"

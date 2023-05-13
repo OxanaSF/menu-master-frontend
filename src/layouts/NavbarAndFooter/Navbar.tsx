@@ -80,7 +80,7 @@ export const Navbar = () => {
 
             <li className="nav-item">
               <Link to="/plan-meals" className="nav-link">
-                Plan Meals
+                Meal Plans
               </Link>
             </li>
           </ul>

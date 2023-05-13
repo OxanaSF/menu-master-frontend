@@ -52,13 +52,12 @@ export const UserDashboard = () => {
     }
   }, [userId, navigate]);
 
-
-
   return (
     <div
       className="container container-dash"
       style={{
         backgroundImage: `url(${backgroundImage})`,
+        // backgroundPosition: 'top'
       }}
     >
       <div className="row">
@@ -72,7 +71,7 @@ export const UserDashboard = () => {
         </div>
 
         {recipes && Array.isArray(recipes) && recipes.length > 0 && (
-          <SavedRecipes recipes={recipes}/>
+          <SavedRecipes recipes={recipes} />
         )}
       </div>
     </div>
