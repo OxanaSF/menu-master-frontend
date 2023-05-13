@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { RecipeModel } from '../../models/RecipeModel';
 import { RecipeDto } from '../../models/dto/RecipeDto';
 import SavedRecipeModal from './SavedRecipeModal';
+import { useSelector } from 'react-redux';
+import { selectUserId } from '../../store/selectors/userSelectors';
+
 
 interface SavedRecipeProps {
   recipe: RecipeModel;
   onClose: () => void;
+  setUpdateDashboard: (value: boolean) => void;
 }
 
-const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose }) => {
+const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose, setUpdateDashboard }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState<RecipeModel | null>(
     null
   );
+  const userId = useSelector(selectUserId);
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -23,6 +28,47 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose }) => {
     console.log('showModal: ', showModal);
   };
 
+  const handleDelete = async (recipeId: number) => {
+    console.log('Start deleting fetch');
+    try {
+      const response = await fetch(
+        `http://localhost:8080/recipes/${userId}/recipes/${recipeId}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (response.ok) {
+        console.log('Recipe deleted successfully');
+        setUpdateDashboard(true);
+      
+      } else {
+        console.log('Failed to delete recipe:', response.status);
+      }
+    } catch (error) {
+      console.log('Error deleting recipe:', error);
+    }
+  };
+
+  const fetchRecipes = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/recipes/${userId}/recipes`
+      );
+      if (response.ok) {
+        const data = await response.json();
+      } else {
+        console.log('Failed to fetch recipes:', response.status);
+      }
+    } catch (error) {
+      console.log('Error fetching recipes:', error);
+    }
+  };
+
   const fetchRecipeById = async (recipeId: number) => {
     if (!recipeId) {
       console.log('Recipe ID is invalid');
@@ -31,7 +77,7 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose }) => {
 
     try {
       console.log('Fetching recipe from Spoonacular API...');
-      const apiKey = '';
+      const apiKey = '5';
       const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information`;
       const params = new URLSearchParams({
         apiKey,
@@ -52,11 +98,13 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose }) => {
     }
   };
 
+
+
   return (
     <div key={recipe.id} className="col-12 col-md-4 mb-3">
       <div
         className="card"
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: 'pointer', minHeight: '170px' }}
         onClick={() => {
           fetchRecipeById(recipe.spoonacularId);
         }}
@@ -72,13 +120,18 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose }) => {
           alt={recipe.name}
         />
         <div className="card-body">
-          <h6
-            className="card-title"
-            style={{ fontSize: '8px', width: '100%', padding: '0' }}
-          >
+          <h6 className="card-title" style={{ fontSize: '8px', padding: '0' }}>
             {recipe.name}
           </h6>
         </div>
+      </div>
+      <div className="mt-2">
+        <button
+          className="btn btn-danger btn-sm"
+          onClick={() => handleDelete(recipe.spoonacularId)}
+        >
+          Delete
+        </button>
       </div>
 
       {showModal && (
@@ -89,4 +142,3 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose }) => {
 };
 
 export default SavedRecipe;
-

@@ -13,12 +13,13 @@ a:hover {
 }
 
 .header {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url('./Images/PublicImages/bg-food-img.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+    url('./Images/PublicImages/bg-food-img3.jpg');
   /* url('./Images/PublicImages/banner.png'); */
   opacity: var(--mainOpacity);
   height: 25em !important;
   background-size: cover;
+  background-position: center;
   filter: brightness(1.5);
 }
 
@@ -33,6 +34,10 @@ a:hover {
 
 .container-main {
   min-height: 65vh;
+}
+
+.carousel-container {
+  background: red;
 }
 
 .main-color {
@@ -147,17 +152,30 @@ a:hover {
 
 .btn:hover {
   background-color: #94a89c !important;
+  color: rgb(31, 55, 48) !important;
+}
+
+.btn-hero:hover {
+  background-color: white !important;
+  color: rgb(31, 55, 48) !important;
+}
+
+.text {
+  font-size: 4.2rem;
+  font-family: 'Montserrat', sans-serif;
+}
+.text2 {
+  font-size: 1.9rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+.text3 {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .searched-recipe-btn {
   margin-right: 0.15rem;
   background-color: rgb(31, 55, 48);
-}
-
-.div {
-  background-color: red;
-  border: solid 2px black;
-  margin: 0 20px;
 }
 
 /* Modal */
@@ -173,4 +191,49 @@ a:hover {
 .form-control:focus {
   border-color: #94a89c;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(7, 53, 13, 0.6);
+}
+.recipe-card-container {
+  /* background: red; */
+  /* max-height: 250px !important; */
+}
+
+/* Meal Plans */
+
+.meal-plan-title {
+  margin-top: 1rem;
+  font-size: 3rem;
+  color: rgba(7, 53, 13, 0.6);
+}
+
+.custom-pagination .page-link {
+  background-color: #94a89c;
+  border-color: #94a89c;
+}
+
+.custom-pagination .page-link:hover {
+  background-color: rgba(7, 53, 13, 0.6);
+  border-color: rgba(7, 53, 13, 0.6);
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: rgba(7, 53, 13, 0.6);
+  border-color: rgba(7, 53, 13, 0.6);
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: rgba(7, 53, 13, 0.6);
+  border-color: rgba(7, 53, 13, 0.6);
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: rgba(7, 53, 13, 0.6);
+  border-color: rgba(7, 53, 13, 0.6);
+}
+
+.custom-pagination a {
+  color: rgba(6, 30, 9, 0.6) !important;
+}
+
+.title-list {
+  list-style: circle;
 }

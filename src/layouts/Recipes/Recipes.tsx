@@ -2,12 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Recipe } from '../../components/Recipe';
 import SearchedRecipe from './SearchedRecipe';
 import { RecipeModel } from '../../models/RecipeModel';
 import SearchForm from './SearchForm';
-
-
 
 export function Recipes(): JSX.Element {
   const [searchedRecipes, setSearchedRecipes] = useState<RecipeModel[]>([]);
@@ -15,9 +12,7 @@ export function Recipes(): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [httpError, setHttpError] = useState<string | null>(null);
 
-
   const [query, setQuery] = useState('');
-
 
   useEffect(() => {
     const searchRecipes = async () => {
@@ -64,8 +59,8 @@ export function Recipes(): JSX.Element {
       );
     } else {
       return (
-        <div style={{ width: '80%', margin: 'auto' }}>
-          <div className="row d-flex justify-content-center">
+        <div className="container mt-4">
+          <div className="row">
             {searchedRecipes.map((recipe: RecipeModel, index: number) => {
               return (
                 <SearchedRecipe

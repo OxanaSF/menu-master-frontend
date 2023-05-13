@@ -53,7 +53,7 @@ const RegisterForm = () => {
           console.log('User data updated:', userData);
           console.log('User registered successfully');
           setSuccessMessage('User registered successfully');
-          navigate('/');
+          navigate('/user-login');
         }
       } else {
         console.log('Error registering user');
@@ -149,11 +149,8 @@ const RegisterForm = () => {
             </Button>
             <span style={{ marginLeft: '10px' }}>
               Already have an account?{' '}
-              <Link to="/user-login">
-                {' '}
-                <span
-                  className="text-decoration-none main-color-text">
-                    
+              <Link to="/user-login" style={{ textDecoration: 'none' }}>
+                <span className="text-decoration-none main-color-text">
                   Log in
                 </span>
               </Link>

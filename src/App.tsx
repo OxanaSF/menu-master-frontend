@@ -33,9 +33,10 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/recipes" element={<Recipes />} />
-            {Boolean(isLoggedIn) && (
+           
               <Route path="/dashboard/:id" element={<UserDashboard />} />
-            )}
+              <Route path="/meal-plan/:mealPlanId" element={<UserDashboard />} />
+          
 
             <Route path="/plan-meals" element={<PlanMeals />} />
             <Route path="/user-registration" element={<RegistrationForm />} />

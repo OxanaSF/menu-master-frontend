@@ -32,6 +32,7 @@ export const UserDashboard = () => {
 
         if (response.ok) {
           const data = await response.json();
+          console.log(data);
           setRecipes(data);
           console.log(data);
         } else {
@@ -50,11 +51,13 @@ export const UserDashboard = () => {
       navigate('/');
     }
   }, [userId, navigate]);
+
   return (
     <div
       className="container container-dash"
       style={{
         backgroundImage: `url(${backgroundImage})`,
+        // backgroundPosition: 'top'
       }}
     >
       <div className="row">
