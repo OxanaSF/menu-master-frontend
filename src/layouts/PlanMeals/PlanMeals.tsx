@@ -43,7 +43,7 @@ const FoodPlanner = () => {
     try {
       const apiKey = '';
       const hash = '';
-      const userName = 'ovtyutchevagmailgmail-com2';
+      const userName = '';
 
       const url = `https://api.spoonacular.com/mealplanner/${userName}/templates/${weeklyPlanId}?hash=${hash}&apiKey=${apiKey}`;
       const response = await axios.get(url);
