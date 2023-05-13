@@ -77,7 +77,7 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({ recipe, onClose, setUpdateDas
 
     try {
       console.log('Fetching recipe from Spoonacular API...');
-      const apiKey = '5';
+      const apiKey = '';
       const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information`;
       const params = new URLSearchParams({
         apiKey,
