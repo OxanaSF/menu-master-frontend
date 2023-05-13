@@ -4,17 +4,21 @@ import { RecipeDto } from '../../models/dto/RecipeDto';
 import SavedRecipeModal from './SavedRecipeModal';
 import { useSelector } from 'react-redux';
 import { selectUserId } from '../../store/selectors/userSelectors';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 interface SavedRecipeProps {
   recipe: RecipeModel;
   onClose: () => void;
   setUpdateDashboard: (value: boolean) => void;
+  handleDeleteRecipe: () => void;
 }
 
 const SavedRecipe: React.FC<SavedRecipeProps> = ({
   recipe,
   onClose,
   setUpdateDashboard,
+  handleDeleteRecipe,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState<RecipeModel | null>(
@@ -47,7 +51,7 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({
 
       if (response.ok) {
         console.log('Recipe deleted successfully');
-        setUpdateDashboard(true);
+        handleDeleteRecipe();
       } else {
         console.log('Failed to delete recipe:', response.status);
       }
@@ -127,10 +131,10 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({
       </div>
       <div className="mt-2">
         <button
-          className="btn btn-danger btn-sm"
+          className="btn btn-sm "
           onClick={() => handleDelete(recipe.spoonacularId)}
         >
-          Delete
+          <FontAwesomeIcon icon={faTrashAlt} style={{ color: 'red' }} />
         </button>
       </div>
 

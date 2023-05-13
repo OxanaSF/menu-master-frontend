@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { PLANS } from '../../utils/plans';
 import MealPlan from './MealPlan';
 
@@ -18,19 +17,15 @@ const FoodPlanner = () => {
   );
   const [weeklyPlanIsSet, setWeeklyPlanIsSet] = useState(false);
 
-  const navigate = useNavigate();
 
   const generateUserCredentials = () => {
     axios
-      .post(
-        ``,
-        {
-          username: '',
-          firstName: 'Oxana',
-          lastName: 'Howard',
-          email: '',
-        }
-      )
+      .post(``, {
+        username: '',
+        firstName: 'Oxana',
+        lastName: 'Howard',
+        email: '',
+      })
       .then((response) => {
         console.log('SUCCESS', response.data);
       })
@@ -73,7 +68,9 @@ const FoodPlanner = () => {
         <Container>
           <Row>
             <Col>
-              <h1 className="text-center mt-5">7-day Meal Plans</h1>
+              <h1 className="text-center mt-5 meal-plans-title">
+                7-day Meal Plans
+              </h1>
             </Col>
           </Row>
 
@@ -99,7 +96,12 @@ const FoodPlanner = () => {
         </Container>
       )}
 
-      {weeklyPlanIsSet && <MealPlan weeklyPlanData={weeklyPlanData} setWeeklyPlanIsSet={setWeeklyPlanIsSet}/>}
+      {weeklyPlanIsSet && (
+        <MealPlan
+          weeklyPlanData={weeklyPlanData}
+          setWeeklyPlanIsSet={setWeeklyPlanIsSet}
+        />
+      )}
     </div>
   );
 };

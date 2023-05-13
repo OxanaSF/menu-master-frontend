@@ -13,13 +13,14 @@ a:hover {
 }
 
 .header {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
-    url('./Images/PublicImages/bg-food-img3.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)),
+    url('./Images/PublicImages/bg-food-img4.jpg');
   /* url('./Images/PublicImages/banner.png'); */
   opacity: var(--mainOpacity);
   height: 25em !important;
   background-size: cover;
-  background-position: center;
+  background-position: bottom;
+  background-position-y: 70%;
   filter: brightness(1.5);
 }
 
@@ -194,6 +195,9 @@ a:hover {
 }
 
 /* Meal Plans */
+.meal-plans-title {
+  color: rgb(6, 63, 47);
+}
 
 .meal-plan-title {
   margin-top: 1rem;
