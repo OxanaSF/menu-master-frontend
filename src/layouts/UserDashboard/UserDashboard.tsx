@@ -17,34 +17,42 @@ export const UserDashboard = () => {
 
   const [recipes, setRecipes] = useState<RecipeModel[]>([]);
 
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8080/recipes/${userId}/recipes`,
-          {
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data);
-          setRecipes(data);
-          console.log(data);
-        } else {
-          console.log('Failed to fetch recipes:', response.status);
+  const fetchRecipes = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/recipes/${userId}/recipes`,
+        {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
         }
-      } catch (error) {
-        console.log('Error fetching recipes:', error);
-      }
-    };
+      );
 
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setRecipes(data);
+        console.log(data);
+      } else {
+        console.log('Failed to fetch recipes:', response.status);
+      }
+    } catch (error) {
+      console.log('Error fetching recipes:', error);
+    }
+  };
+
+  useEffect(() => {
     fetchRecipes();
   }, [userId]);
+
+  const handleDeleteRecipe = () => {
+    fetchRecipes();
+  };
+
+  useEffect(() => {
+    handleDeleteRecipe();
+  }, []);
 
   useEffect(() => {
     if (!userId) {
@@ -57,7 +65,6 @@ export const UserDashboard = () => {
       className="container container-dash"
       style={{
         backgroundImage: `url(${backgroundImage})`,
-        // backgroundPosition: 'top'
       }}
     >
       <div className="row">
@@ -71,7 +78,10 @@ export const UserDashboard = () => {
         </div>
 
         {recipes && Array.isArray(recipes) && recipes.length > 0 && (
-          <SavedRecipes recipes={recipes} />
+          <SavedRecipes
+            recipes={recipes}
+            handleDeleteRecipe={handleDeleteRecipe}
+          />
         )}
       </div>
     </div>

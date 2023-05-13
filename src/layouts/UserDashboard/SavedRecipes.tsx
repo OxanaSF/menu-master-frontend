@@ -1,11 +1,15 @@
 import { RecipeModel } from '../../models/RecipeModel';
 import SavedRecipe from './SavedRecipe';
 
-interface SavedRecipesProps {
+type SavedRecipesProps = {
   recipes: RecipeModel[];
-}
+  handleDeleteRecipe: () => void;
+};
 
-const SavedRecipes = ({ recipes }: SavedRecipesProps) => {
+const SavedRecipes: React.FC<SavedRecipesProps> = ({
+  recipes,
+  handleDeleteRecipe,
+}) => {
   console.log(recipes);
   return (
     <div className="col-12 col-md-6">
@@ -18,9 +22,13 @@ const SavedRecipes = ({ recipes }: SavedRecipesProps) => {
                 recipe={recipe}
                 onClose={function (): void {
                   throw new Error('Function not implemented.');
-                } } setUpdateDashboard={function (value: boolean): void {
+                }}
+                setUpdateDashboard={function (value: boolean): void {
                   throw new Error('Function not implemented.');
-                } }              />
+                }}
+                handleDeleteRecipe={handleDeleteRecipe}
+                key={recipe.id}
+              />
             ))}
           </div>
         </div>
