@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
-import bgImage from '../../Images/PublicImages/hero-image-2.png';
+import { useSelector } from 'react-redux';
+import { selectUserId } from '../../store/selectors/userSelectors';
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const RegisterForm = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const userId = useSelector(selectUserId);
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
@@ -147,14 +149,30 @@ const RegisterForm = () => {
             >
               Register
             </Button>
-            <span style={{ marginLeft: '10px' }}>
-              Already have an account?{' '}
-              <Link to="/user-login" style={{ textDecoration: 'none' }}>
-                <span className="text-decoration-none main-color-text">
-                  Log in
-                </span>
-              </Link>
-            </span>
+            {userId && (
+              <span style={{ marginLeft: '10px' }}>
+                Already have an account?
+                <Link
+                  to={`/dashboard/${userId}`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <span className="text-decoration-none main-color-text">
+                    Log in
+                  </span>
+                </Link>
+              </span>
+            )}
+
+            {!userId && (
+              <span style={{ marginLeft: '10px' }}>
+                Already have an account?
+                <Link to="/user-login" style={{ textDecoration: 'none' }}>
+                  <span className="text-decoration-none main-color-text">
+                    Log in
+                  </span>
+                </Link>
+              </span>
+            )}
           </div>
         </Form>
       </Container>

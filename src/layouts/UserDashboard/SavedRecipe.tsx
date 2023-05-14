@@ -108,7 +108,7 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({
     <div key={recipe.id} className="col-12 col-md-4 mb-3">
       <div
         className="card"
-        style={{ cursor: 'pointer', minHeight: '170px' }}
+        style={{ cursor: 'pointer', minHeight: '200px' }}
         onClick={() => {
           fetchRecipeById(recipe.spoonacularId);
         }}
@@ -124,9 +124,7 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({
           alt={recipe.name}
         />
         <div className="card-body">
-          <h6 className="card-title" style={{ fontSize: '8px', padding: '0' }}>
-            {recipe.name}
-          </h6>
+          <h6 className="card-title text6">{recipe.name}</h6>
         </div>
       </div>
       <div className="mt-2">

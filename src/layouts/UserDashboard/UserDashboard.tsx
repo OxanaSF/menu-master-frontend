@@ -70,10 +70,11 @@ export const UserDashboard = () => {
       <div className="row">
         <div className="col-12 col-md-6">
           <div className="card mb-4 p-3" style={{ minHeight: '160px' }}>
-            <h2>Welcome back, {userName}</h2>
+            <h1 className='text4'>Welcome back, {userName}</h1>
           </div>
-          <div className="card mb-4" style={{ minHeight: '230px' }}>
+          <div className="card mb-5" style={{ minHeight: '270px' }}>
             <div className="card-header">Your Grocery List</div>
+            <div className='card-body text5'> <h3>No items in your Grocery list yet.</h3></div>
           </div>
         </div>
 
