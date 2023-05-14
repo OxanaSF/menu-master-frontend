@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import axios from 'axios';
+
 import { PLANS } from '../../utils/plans';
 import MealPlan from './MealPlan';
+
+import backgroundImage from '../../Images/PublicImages/dashboard-greens.png';
 
 type WeeklyPlanData = {
   id: number;
@@ -63,7 +66,22 @@ const FoodPlanner = () => {
   };
 
   return (
-    <div>
+    <div
+    
+    
+    style={{
+      ...(weeklyPlanIsSet
+        ? {}
+        : {
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            width: '100vw',
+            minHeight: '100vh',
+          }),
+    }}
+
+    >
       {!weeklyPlanIsSet && (
         <Container>
           <Row>
@@ -77,17 +95,12 @@ const FoodPlanner = () => {
           <Row className="mt-3">
             {PLANS.map((plan) => (
               <Col key={plan.id} sm={4}>
-                <Card className="mb-4">
-                  {/* <Card.Img variant="top" src={`image${plan.id}.jpg`} /> */}
+                <Card className="mb-4 meal-plan-card"
+                onClick={() => handleGeneratePlan(plan.id)}
+                >
                   <Card.Body>
-                    <Card.Title>{plan.name}</Card.Title>
+                    <Card.Title className='plan-name'>{plan.name}</Card.Title>
                     <Card.Text>{plan.description}</Card.Text>
-                    <button
-                      className="btn btn-sm main-color btn-lg text-white"
-                      onClick={() => handleGeneratePlan(plan.id)}
-                    >
-                      Generate
-                    </button>
                   </Card.Body>
                 </Card>
               </Col>

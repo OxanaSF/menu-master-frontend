@@ -33,6 +33,10 @@ a:hover {
   height: 100%;
 }
 
+.app-container {
+  min-height: 80vh;
+}
+
 .container-main {
   min-height: 65vh;
 }
@@ -46,6 +50,7 @@ a:hover {
   background-color: rgb(6, 63, 47);
 }
 .main-color-text {
+  margin-left: 0.5rem;
   color: rgb(6, 63, 47);
   font-weight: bold;
   text-decoration: none !important;
@@ -173,6 +178,23 @@ a:hover {
 .text3 {
   font-family: 'Montserrat', sans-serif;
 }
+.text4 {
+  font-size: 2.3rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+.text5 {
+  font-size: 1.8rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.text6 {
+  font-size: 0.6rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
 
 .searched-recipe-btn {
   margin-right: 0.15rem;
@@ -197,12 +219,38 @@ a:hover {
 /* Meal Plans */
 .meal-plans-title {
   color: rgb(6, 63, 47);
+  color: white;
+  font-size: 3.5rem;
+  margin-bottom: 3rem;
 }
 
 .meal-plan-title {
   margin-top: 1rem;
   font-size: 3rem;
   color: rgba(7, 53, 13, 0.6);
+  /* font-family: 'Montserrat', sans-serif; */
+}
+
+.meal-plan-card {
+  height: 250px;
+  transition: transform 0.3s ease;
+  padding: 0 1rem;
+  color: rgb(4, 42, 31);
+  font-family: 'Montserrat', sans-serif;
+  overflow-y: auto;
+}
+
+.plan-name {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: rgb(31, 55, 48);
+}
+
+.meal-plan-card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  background-color: #94a89c;
+  color: white;
 }
 
 .meal-plan-back-to-meals-btn {
