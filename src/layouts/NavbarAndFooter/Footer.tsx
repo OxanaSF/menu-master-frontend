@@ -37,17 +37,17 @@ export const Footer = () => {
             <ul className="list-unstyled">
               <li>
                 <a href="#" className="gray-link">
-                  Link 1
+                  Recipes
                 </a>
               </li>
               <li>
                 <a href="#" className="gray-link">
-                  Link 2
+                  Meal Plans
                 </a>
               </li>
               <li>
                 <a href="#" className="gray-link">
-                  Link 3
+                  Sign In
                 </a>
               </li>
             </ul>
