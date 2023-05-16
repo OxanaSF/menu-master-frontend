@@ -238,6 +238,7 @@ a:hover {
   color: rgb(4, 42, 31);
   font-family: 'Montserrat', sans-serif;
   overflow-y: auto;
+  border-radius: 2px;
 }
 
 .plan-name {
@@ -288,4 +289,32 @@ a:hover {
 
 .title-list {
   list-style: circle;
+}
+
+/* Recipe card general */
+.recipe-card-container {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(7, 53, 13, 0.6);
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.recipe-card-container:hover {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(42, 44, 42, 0.8);
+  transform: translateY(-2px);
+}
+.notification {
+  position: 'fixed';
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(14, 173, 205);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 9999;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 600;
 }

@@ -20,15 +20,17 @@ const FoodPlanner = () => {
   );
   const [weeklyPlanIsSet, setWeeklyPlanIsSet] = useState(false);
 
-
   const generateUserCredentials = () => {
     axios
-      .post(``, {
-        username: '',
-        firstName: 'Oxana',
-        lastName: 'Howard',
-        email: '',
-      })
+      .post(
+        `https://api.spoonacular.com/users/connect?apiKey=`,
+        {
+          username: '',
+          firstName: 'Oxana',
+          lastName: 'Howard',
+          email: '',
+        }
+      )
       .then((response) => {
         console.log('SUCCESS', response.data);
       })
@@ -67,19 +69,17 @@ const FoodPlanner = () => {
 
   return (
     <div
-    
-    style={{
-      ...(weeklyPlanIsSet
-        ? {}
-        : {
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            width: '100vw',
-            minHeight: '100vh',
-          }),
-    }}
-
+      style={{
+        ...(weeklyPlanIsSet
+          ? {}
+          : {
+              backgroundImage: `url(${backgroundImage})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              width: '100vw',
+              minHeight: '100vh',
+            }),
+      }}
     >
       {!weeklyPlanIsSet && (
         <Container>
@@ -88,17 +88,20 @@ const FoodPlanner = () => {
               <h1 className="text-center mt-5 meal-plans-title">
                 7-day Meal Plans
               </h1>
+              {/* <button onClick={generateUserCredentials}>Generate</button> */}
+            
             </Col>
           </Row>
 
           <Row className="mt-3">
             {PLANS.map((plan) => (
               <Col key={plan.id} sm={4}>
-                <Card className="mb-4 meal-plan-card"
-                onClick={() => handleGeneratePlan(plan.id)}
+                <Card
+                  className="mb-4 meal-plan-card"
+                  onClick={() => handleGeneratePlan(plan.id)}
                 >
                   <Card.Body>
-                    <Card.Title className='plan-name'>{plan.name}</Card.Title>
+                    <Card.Title className="plan-name">{plan.name}</Card.Title>
                     <Card.Text>{plan.description}</Card.Text>
                   </Card.Body>
                 </Card>
