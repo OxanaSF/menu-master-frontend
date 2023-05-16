@@ -12,6 +12,7 @@ interface SearchedRecipeProps {
   image: string;
   title: string;
   recipe: RecipeModel;
+  handleNotification: () => void;
 }
 
 const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
@@ -19,6 +20,7 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
   image,
   title,
   recipe,
+  handleNotification,
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -40,6 +42,7 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
       )
       .then(() => {
         console.log('Recipe saved successfully');
+        handleNotification();
       })
       .catch((error: any) => {
         console.log(error);
@@ -62,6 +65,11 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
     <div
       className="col-xs-6 col-sm-6 col-md-4 col-lg-3 searched-recipes-list"
       key={key}
+      style={
+        {
+          // background: 'red'
+        }
+      }
     >
       <div className="text-center recipe-card-container">
         {image && (
@@ -70,6 +78,8 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
             alt={title || ''}
             style={{
               width: '100%',
+              borderTopLeftRadius: '.3rem',
+              borderTopRightRadius: '.3rem',
             }}
           />
         )}
@@ -80,7 +90,7 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
             className="btn main-color text-white mb-5 searched-recipe-btn"
             onClick={handleSave}
             style={{
-              marginRight: '10px',
+              marginRight: '10px'
             }}
           >
             Save

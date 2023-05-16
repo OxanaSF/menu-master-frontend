@@ -11,8 +11,16 @@ export function Recipes(): JSX.Element {
   const [searchSuccess, setSearchSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [httpError, setHttpError] = useState<string | null>(null);
+  const [showNotification, setShowNotification] = useState(false);
 
   const [query, setQuery] = useState('');
+
+  const handleNotification = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000);
+  };
 
   useEffect(() => {
     const searchRecipes = async () => {
@@ -68,6 +76,7 @@ export function Recipes(): JSX.Element {
                   image={recipe.image}
                   title={recipe.title || ''}
                   recipe={recipe}
+                  handleNotification={handleNotification}
                 />
               );
             })}
@@ -83,6 +92,24 @@ export function Recipes(): JSX.Element {
         onFormSubmit={onFormSubmit}
         setSearchSuccess={setSearchSuccess}
       />
+      {showNotification && (
+        <div
+          className="notification"
+          style={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'rgba(14, 173, 205)',
+            color: 'white',
+            padding: '10px 20px',
+            borderRadius: '5px',
+            zIndex: 9999,
+          }}
+        >
+          Recipe saved successfully!
+        </div>
+      )}
       {renderSearchedGallery()}
     </div>
   );
