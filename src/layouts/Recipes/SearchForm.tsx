@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { RecipeModel } from '../../models/RecipeModel';
 
+import './SearchForm.css';
+
 interface SearchFormProps {
   onFormSubmit: (formData: RecipeModel[]) => void;
   setSearchSuccess: React.Dispatch<React.SetStateAction<boolean>>;
@@ -63,7 +65,6 @@ const SearchForm: React.FC<SearchFormProps> = ({
               value={query === 'salad' ? '' : query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search for recipes..."
-             
             />
             <div className="input-group-append">
               <button

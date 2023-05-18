@@ -4,6 +4,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUserId } from '../../store/selectors/userSelectors';
 
+import './RegistrationForm.css';
+
 const RegisterForm = () => {
   const navigate = useNavigate();
 
@@ -66,18 +68,9 @@ const RegisterForm = () => {
   };
 
   return (
-    <div>
-      <Container
-        className="my-5 py-3 form-container"
-        style={{
-          maxWidth: '400px',
-          backgroundColor: '#fff',
-          borderRadius: '10px',
-          padding: '20px',
-          boxShadow: '0px 0px 20px rgba(0,0,0,0.1)',
-        }}
-      >
-        <h2 className="text-center mb-4">Register</h2>
+    <div className='register-page'>
+      <Container className="my-5 py-3 form-container">
+        <h2 className="text-center mb-4 register-h2">Register</h2>
         {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
         {successMessage && <Alert variant="success">{successMessage}</Alert>}
         <Form onSubmit={handleSubmit}>
@@ -143,7 +136,7 @@ const RegisterForm = () => {
 
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Button
-              className="btn main-color text-white mt-3 "
+              className="btn main-color text-white mt-3 register-h2"
               variant="primary"
               type="submit"
             >

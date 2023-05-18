@@ -1,0 +1,47 @@
+.footer-title {
+  font-weight: 600;
+  font-size: 1.2rem !important ;
+}
+
+.gray-link,
+.footer-link,
+.social-icon {
+  color: rgb(251, 249, 248);
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+}
+
+.footer-link:hover {
+  color: rgb(31, 55, 48) !important;
+}
+
+.social-icons {
+  display: flex !important;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-icon {
+  border-radius: 50%;
+  border: 1px solid white;
+  padding: 5px;
+  height: 2rem !important;
+  width: 2rem !important;
+  transition: transform 0.3s ease !important;
+}
+
+.social-icon:hover {
+  border: 1px solid rgb(31, 55, 48);
+  transform: scale(1.05) !important;
+}
+
+.facebook {
+  height: 1rem !important;
+  padding: 5px 9px;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  font-weight: 600;
+}

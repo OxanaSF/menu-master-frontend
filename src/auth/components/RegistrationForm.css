@@ -1,0 +1,15 @@
+.register-page {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.register-page .form-container {
+  max-width: 420px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-container .register-h2 {
+  font-weight: 600;
+}

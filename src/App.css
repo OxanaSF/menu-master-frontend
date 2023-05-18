@@ -7,11 +7,6 @@ li {
   list-style-type: none;
 }
 
-.social-icon:hover,
-a:hover {
-  color: #94a89c !important;
-}
-
 .header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)),
     url('./Images/PublicImages/bg-food-img4.jpg');
@@ -41,43 +36,18 @@ a:hover {
   min-height: 65vh;
 }
 
-.carousel-container {
-  background: red;
-}
-
 .main-color {
   background-color: rgb(36, 82, 56);
   background-color: rgb(6, 63, 47);
+  background-color: rgb(192, 153, 153);
+  background-color: #94a89c;
+  /* background-color: #fffebf; */
 }
 .main-color-text {
   margin-left: 0.5rem;
   color: rgb(6, 63, 47);
   font-weight: bold;
   text-decoration: none !important;
-}
-
-.gray-link {
-  color: rgb(251, 249, 248);
-  text-decoration: none;
-}
-
-.col-image-left {
-  background-image: url('./Images/PublicImages/hero-image-1.png');
-  height: 38em !important;
-  background-size: cover;
-  background-position: center center;
-}
-
-.col-image-right {
-  background-image: url('./Images/PublicImages/hero-image-2.png');
-  background-image: url('./Images/PublicImages/hero-image-2.png');
-  height: 38em !important;
-  background-size: cover;
-  background-position: center center;
-}
-
-.hero-container {
-  margin: 0 2rem;
 }
 
 .container-dash {
@@ -94,9 +64,7 @@ a:hover {
   margin: auto;
 }
 
-.search-bar {
-  width: 50% !important;
-}
+
 
 .searched-recipes-list {
   margin: auto !important;
@@ -142,11 +110,7 @@ a:hover {
   height: 100%;
 }
 
-.form-container {
-  padding: 20px;
-  border-radius: 10px;
-  border: 0.5px solid #94a89c;
-}
+
 
 .btn {
   background-color: none !important;
@@ -157,27 +121,11 @@ a:hover {
 }
 
 .btn:hover {
-  background-color: #94a89c !important;
+  background-color: transparent !important;
   color: rgb(31, 55, 48) !important;
+  border: 1px solid #94a89c !important;
 }
 
-.btn-hero:hover {
-  background-color: white !important;
-  color: rgb(31, 55, 48) !important;
-}
-
-.text {
-  font-size: 4.2rem;
-  font-family: 'Montserrat', sans-serif;
-}
-.text2 {
-  font-size: 1.9rem;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-}
-.text3 {
-  font-family: 'Montserrat', sans-serif;
-}
 .text4 {
   font-size: 2.3rem;
   font-family: 'Montserrat', sans-serif;
@@ -216,43 +164,13 @@ a:hover {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(7, 53, 13, 0.6);
 }
 
-/* Meal Plans */
-.meal-plans-title {
-  color: rgb(6, 63, 47);
-  color: white;
-  font-size: 3.5rem;
-  margin-bottom: 3rem;
+.form-container input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #333 !important;
 }
 
-.meal-plan-title {
-  margin-top: 1rem;
-  font-size: 3rem;
-  color: rgba(7, 53, 13, 0.6);
-  /* font-family: 'Montserrat', sans-serif; */
-}
 
-.meal-plan-card {
-  height: 250px;
-  transition: transform 0.3s ease;
-  padding: 0 1rem;
-  color: rgb(4, 42, 31);
-  font-family: 'Montserrat', sans-serif;
-  overflow-y: auto;
-  border-radius: 2px;
-}
 
-.plan-name {
-  font-size: 1.7rem;
-  font-weight: 600;
-  color: rgb(31, 55, 48);
-}
-
-.meal-plan-card:hover {
-  cursor: pointer;
-  transform: scale(1.05);
-  background-color: #94a89c;
-  color: white;
-}
 
 .meal-plan-back-to-meals-btn {
   margin-top: 2rem;
@@ -291,6 +209,10 @@ a:hover {
   list-style: circle;
 }
 
+
+
+
+
 /* Recipe card general */
 .recipe-card-container {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(7, 53, 13, 0.6);
@@ -309,7 +231,7 @@ a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(14, 173, 205);
+  background-color: rgba(7, 53, 13, 0.6);
   color: white;
   padding: 10px 20px;
   border-radius: 5px;

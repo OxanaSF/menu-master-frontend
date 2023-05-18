@@ -1,0 +1,43 @@
+.explorePopularRecipes {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.hero-text-h1 {
+  font-size: 4rem !important;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.hero-text-h2 {
+  font-size: 1.7rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.explorePopularRecipes .hero-text-h3 {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid white !important;
+  color: white !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.8px;
+  transition: transform 0.3s ease;
+}
+
+.explorePopularRecipes .hero-text-h3:hover {
+  background-color: transparent !important;
+  color: black !important;
+  color: white !important;
+
+  transform: scale(1.05);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .hero-text-h1 {
+    font-size: 2.5rem !important;
+  }
+
+  .hero-text-h2 {
+    font-size: 1.2rem;
+  }
+}

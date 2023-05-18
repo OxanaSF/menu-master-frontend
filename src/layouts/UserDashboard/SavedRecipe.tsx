@@ -107,7 +107,7 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({
   return (
     <div key={recipe.id} className="col-12 col-md-4 mb-3">
       <div
-        className="card"
+        className="card saved-recipe-card"
         style={{ cursor: 'pointer', minHeight: '200px' }}
         onClick={() => {
           fetchRecipeById(recipe.spoonacularId);
@@ -115,7 +115,7 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({
       >
         <img
           src={recipe.imageUrl}
-          className="card-img-top"
+          className="saved-recipe-card-img"
           style={{
             minHeight: '50px',
             objectFit: 'cover',
