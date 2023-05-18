@@ -1,0 +1,58 @@
+.navbar-brand {
+  color: white !important;
+  font-size: 1.6rem !important;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.navbar-brand:hover {
+  color: rgb(31, 55, 48) !important;
+}
+
+.nav-link {
+  margin-top: 3px;
+  color: white !important;
+  font-size: 1.3rem !important;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.nav-link:hover {
+  color: rgb(31, 55, 48) !important;
+}
+
+.sign-btn {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1.3rem !important;
+}
+
+.sign-btn :hover {
+  background-color: red !important;
+  color: rgb(31, 55, 48) !important;
+  border: 1px solid #94a89c !important;
+}
+
+.nested-sign-btn {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1rem !important;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1.3rem !important;
+    letter-spacing: 0.1px;
+  }
+
+  .nav-link {
+    margin-top: 3px;
+    color: white !important;
+    font-size: 1rem !important;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .sign-btn {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    font-size: 1rem !important;
+  }
+}

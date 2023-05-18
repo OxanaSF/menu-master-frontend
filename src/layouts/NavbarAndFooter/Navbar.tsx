@@ -8,8 +8,7 @@ import { selectIsLoggedIn } from '../../store/selectors/authSelectors';
 import { logoutRequest } from '../../store/actions/authActions';
 import { selectUserId } from '../../store/selectors/userSelectors';
 import { saveUserId } from '../../store/actions/userActions';
-
-
+import './Navbar.css';
 
 export const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -33,12 +32,10 @@ export const Navbar = () => {
       dispatch(logoutRequest());
       navigate('/');
       window.location.reload();
-      
     } catch (error) {
       console.log(error);
     }
   };
-
 
   const handleRecipesLink = () => {
     navigate('/recipes');
@@ -65,18 +62,22 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link to="/recipes" className="nav-link" onClick={handleRecipesLink}>
+              <Link
+                to="/recipes"
+                className="nav-link"
+                onClick={handleRecipesLink}
+                style={{ color: 'white' }}
+              >
                 Recipes
               </Link>
             </li>
-            {
-              Boolean(isLoggedIn) &&
+            {Boolean(isLoggedIn) && (
               <li className="nav-item">
                 <Link to={`/dashboard/${userId}`} className="nav-link">
                   Dashboard
                 </Link>
               </li>
-            }
+            )}
 
             <li className="nav-item">
               <Link to="/plan-meals" className="nav-link">
@@ -85,45 +86,41 @@ export const Navbar = () => {
             </li>
           </ul>
           <ul className="navbar-nav ms-auto">
-            {
-              Boolean(isLoggedIn) &&
-               (
-                <li className="nav-item">
-                  <Dropdown show={showDropdown} onToggle={handleDropdownToggle}>
-                    <Button
-                      variant="outline-light"
-                      id="dropdown-basic"
-                      className="me-2"
-                      onClick={handleLogout}
-                    >
-                      Logout
-                    </Button>
-                  </Dropdown>
-                </li>
-              )
-            }
+            {Boolean(isLoggedIn) && (
+              <li className="nav-item">
+                <Dropdown show={showDropdown} onToggle={handleDropdownToggle}>
+                  <Button
+                    variant="outline-light"
+                    id="dropdown-basic"
+                    className="me-2 sign-btn"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Button>
+                </Dropdown>
+              </li>
+            )}
 
-            {
-              !Boolean(isLoggedIn) &&
+            {!Boolean(isLoggedIn) && (
               <li className="nav-item">
                 <Dropdown show={showDropdown} onToggle={handleDropdownToggle}>
                   <Dropdown.Toggle
                     variant="outline-light"
                     id="dropdown-basic"
-                    className="me-2"
+                    className="me-2 sign-btn"
                   >
                     Sign In
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="/user-login">Log In</Dropdown.Item>
-                    <Dropdown.Item href="/user-registration">
+                    <Dropdown.Item href="/user-login" className='nested-sign-btn'>Log In</Dropdown.Item>
+                    <Dropdown.Item href="/user-registration" className='nested-sign-btn'>
                       Register
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </li>
-            }
+            )}
           </ul>
         </div>
       </div>

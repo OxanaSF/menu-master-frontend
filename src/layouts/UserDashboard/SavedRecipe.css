@@ -1,0 +1,9 @@
+.saved-recipe-card {
+  cursor: pointer !important;
+  min-height: 200px !important;
+  transition: transform 0.3s ease !important;
+}
+
+/* .saved-recipe-card:hover {
+    transform: scale(1.05) !important;
+} */

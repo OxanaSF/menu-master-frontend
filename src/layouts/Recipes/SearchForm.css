@@ -1,0 +1,10 @@
+.search-bar {
+  width: 50% !important;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .search-bar {
+    width: 90% !important;
+  }
+}

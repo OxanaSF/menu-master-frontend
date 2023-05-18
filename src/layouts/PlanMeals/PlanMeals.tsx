@@ -6,6 +6,7 @@ import { PLANS } from '../../utils/plans';
 import MealPlan from './MealPlan';
 
 import backgroundImage from '../../Images/PublicImages/dashboard-greens.png';
+import './PlanMeals.css'
 
 type WeeklyPlanData = {
   id: number;
@@ -43,7 +44,7 @@ const FoodPlanner = () => {
     try {
       const apiKey = '';
       const hash = '';
-      const userName = '';
+      const userName = 'ovtyutchevagmailgmail-com3';
 
       const url = `https://api.spoonacular.com/mealplanner/${userName}/templates/${weeklyPlanId}?hash=${hash}&apiKey=${apiKey}`;
       const response = await axios.get(url);
@@ -68,19 +69,12 @@ const FoodPlanner = () => {
   };
 
   return (
-    <div
-      style={{
-        ...(weeklyPlanIsSet
-          ? {}
-          : {
-              backgroundImage: `url(${backgroundImage})`,
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-              width: '100vw',
-              minHeight: '100vh',
-            }),
-      }}
-    >
+
+    <div className={weeklyPlanIsSet ? 'plan-meals-no-image' : 'plan-meals-with-image'} >
+
+
+
+    
       {!weeklyPlanIsSet && (
         <Container>
           <Row>

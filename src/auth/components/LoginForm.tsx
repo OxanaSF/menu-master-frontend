@@ -8,6 +8,7 @@ import { loginRequest } from '../../store/actions/authActions';
 import { saveUserId, saveUserName } from '../../store/actions/userActions';
 import { selectUserId } from '../../store/selectors/userSelectors';
 
+import './LoginForm.css';
 
 const LoginForm = () => {
   const userId = useSelector(selectUserId);
@@ -41,7 +42,7 @@ const LoginForm = () => {
       const userData = await response.json();
       dispatch(loginRequest());
       console.log('User data updated:', userData);
-   
+
       document.cookie = `sessionId=${userData[0]};path=/`;
 
       dispatch(saveUserId(userData[0]));
@@ -56,18 +57,9 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <Container
-        className="my-5 py-3 form-container"
-        style={{
-          maxWidth: '400px',
-          backgroundColor: '#fff',
-          borderRadius: '10px',
-          padding: '20px',
-          boxShadow: '0px 0px 20px rgba(0,0,0,0.1)',
-        }}
-      >
-        <h2 className="text-center mb-4">Login</h2>
+    <div className="login-page">
+      <Container className="my-5 py-3 form-container">
+        <h2 className="text-center mb-4 login-h2">Login</h2>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
