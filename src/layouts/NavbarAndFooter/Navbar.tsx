@@ -107,14 +107,22 @@ export const Navbar = () => {
                   <Dropdown.Toggle
                     variant="outline-light"
                     id="dropdown-basic"
-                    className="me-2 sign-btn"
+                    className="sign-btn"
                   >
                     Sign In
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="/user-login" className='nested-sign-btn'>Log In</Dropdown.Item>
-                    <Dropdown.Item href="/user-registration" className='nested-sign-btn'>
+                    <Dropdown.Item
+                      href="/user-login"
+                      className="nested-sign-btn no-bg"
+                    >
+                      Log In
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      href="/user-registration"
+                      className="nested-sign-btn no-bg"
+                    >
                       Register
                     </Dropdown.Item>
                   </Dropdown.Menu>

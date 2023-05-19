@@ -13,3 +13,10 @@
 .form-container .register-h2 {
   font-weight: 600;
 }
+
+.main-color-text {
+  margin-left: 0.5rem;
+  color: rgb(6, 63, 47);
+  font-weight: bold;
+  text-decoration: none !important;
+}

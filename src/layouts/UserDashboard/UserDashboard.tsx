@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RecipeModel } from '../../models/RecipeModel';
-import backgroundImage from '../../Images/PublicImages/dashboard-greens.png';
+import backgroundImage from '../../Images/PublicImages/test22.png';
 import { useNavigate } from 'react-router-dom';
+
+import './UserDashboard.css';
 
 import {
   selectUserId,
@@ -61,20 +63,25 @@ export const UserDashboard = () => {
   }, [userId, navigate]);
 
   return (
-    <div
-      className="container container-dash"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-      }}
-    >
-      <div className="row">
+    <div className="container-dash">
+      <div className="row container-dash-row">
         <div className="col-12 col-md-6">
           <div className="card mb-4 p-3" style={{ minHeight: '160px' }}>
-            <h1 className='text4'>Welcome back, {userName}</h1>
+            <h1 className="text4">Welcome back, {userName}!</h1>
           </div>
           <div className="card mb-5" style={{ minHeight: '270px' }}>
             <div className="card-header">Your Grocery List</div>
-            <div className='card-body text5'> <h3>No items in your Grocery list yet.</h3></div>
+            <div className="card-body text5">
+              {' '}
+              <h3>No items in your Grocery list.</h3>
+            </div>
+          </div>
+          <div className="card mb-5" style={{ minHeight: '270px' }}>
+            <div className="card-header">Your Meal Plan</div>
+            <div className="card-body text5">
+              {' '}
+              <h3>No saved Meal Plans.</h3>
+            </div>
           </div>
         </div>
 

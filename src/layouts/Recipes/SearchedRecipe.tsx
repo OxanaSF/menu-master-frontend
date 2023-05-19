@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 import { selectUserId } from '../../store/selectors/userSelectors';
 import { useNavigate } from 'react-router-dom';
 
+import './SearchedRecipe.css';
+
 interface SearchedRecipeProps {
   key: number;
   image: string;
@@ -65,33 +67,15 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
     <div
       className="col-xs-6 col-sm-6 col-md-4 col-lg-3 searched-recipes-list"
       key={key}
-      style={
-        {
-          // background: 'red'
-        }
-      }
     >
       <div className="text-center recipe-card-container">
-        {image && (
-          <img
-            src={image}
-            alt={title || ''}
-            style={{
-              width: '100%',
-              borderTopLeftRadius: '.3rem',
-              borderTopRightRadius: '.3rem',
-            }}
-          />
-        )}
+        {image && <img src={image} alt={title || ''} />}
         <div style={{ height: '70px' }}>{title && <p>{title}</p>}</div>
 
         {userId && (
           <button
             className="btn main-color text-white mb-5 searched-recipe-btn"
             onClick={handleSave}
-            style={{
-              marginRight: '10px'
-            }}
           >
             Save
           </button>
@@ -99,11 +83,8 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
 
         {!userId && (
           <button
-            className="btn main-color text-white mb-5"
+            className="btn main-color text-white mb-5 searched-recipe-btn"
             onClick={handleNavigate}
-            style={{
-              marginRight: '10px',
-            }}
           >
             Save
           </button>

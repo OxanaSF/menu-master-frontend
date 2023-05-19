@@ -76,7 +76,7 @@ const FoodPlanner = () => {
 
     
       {!weeklyPlanIsSet && (
-        <Container>
+        <Container className='plan-meals-container'>
           <Row>
             <Col>
               <h1 className="text-center mt-5 meal-plans-title">

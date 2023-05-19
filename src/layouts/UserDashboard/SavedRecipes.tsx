@@ -12,11 +12,12 @@ const SavedRecipes: React.FC<SavedRecipesProps> = ({
 }) => {
   console.log(recipes);
   return (
-    <div className="col-12 col-md-6">
-      <div className="card mb-4" style={{ minHeight: '200px' }}>
+    <div className="col-12 col-md-6 saved-recipes-container">
+      {/* <div className="card mb-4" style={{ minHeight: '200px' }}> */}
+      <div className="card mb-4">
         <div className="card-header">Your Saved Recipes</div>
         <div className="card-body">
-          <div className="row">
+          <div className="row saved-cards">
             {recipes.map((recipe) => (
               <SavedRecipe
                 recipe={recipe}

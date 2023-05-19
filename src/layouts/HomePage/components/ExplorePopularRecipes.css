@@ -1,3 +1,14 @@
+.header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)),
+    url('../../../Images/PublicImages/bg-food-img4.jpg');
+  opacity: var(--mainOpacity);
+  height: 25em !important;
+  background-size: cover;
+  background-position: bottom;
+  background-position-y: 70%;
+  filter: brightness(1.5);
+}
+
 .explorePopularRecipes {
   font-family: 'Montserrat', sans-serif;
 }

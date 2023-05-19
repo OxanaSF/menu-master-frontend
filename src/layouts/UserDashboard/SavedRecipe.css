@@ -4,6 +4,27 @@
   transition: transform 0.3s ease !important;
 }
 
-/* .saved-recipe-card:hover {
-    transform: scale(1.05) !important;
-} */
+.saved-recipe-card:hover {
+  transform: scale(1.05) !important;
+}
+
+.saved-recipe-card-img {
+  min-height: 50px;
+  object-fit: cover;
+  font-size: 10px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.saved-recipe-card-title {
+  font-size: 0.6rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.saved-recipe-card-delete-btn {
+  color: #94a89c !important;
+}
+
+

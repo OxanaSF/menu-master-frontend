@@ -25,22 +25,30 @@
   color: gba(7, 53, 13, 0.6);
 }
 
+.hero-par-h1 {
+  font-size: 2.4rem;
+  /* font-weight: 600; */
+}
+
 .hero-par2-h1 {
   margin-top: 5rem;
 }
 
+.hero-par-text {
+  margin-top: 1.7rem;
+  /* font-weight: 600 !important; */
+}
 
 /* Mobile styles */
 @media (max-width: 768px) {
-    .hero-container {
-        margin: 2rem;
-      }
-
-      .col-image-left {
-        height: 20em !important;
-      }
-      .col-image-right {
-        height: 20em !important;
-      }
+  .hero-container {
+    margin: 2rem;
   }
-  
+
+  .col-image-left {
+    height: 20em !important;
+  }
+  .col-image-right {
+    height: 20em !important;
+  }
+}

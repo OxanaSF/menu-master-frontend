@@ -6,6 +6,8 @@ import SearchedRecipe from './SearchedRecipe';
 import { RecipeModel } from '../../models/RecipeModel';
 import SearchForm from './SearchForm';
 
+import './Recipes.css';
+
 export function Recipes(): JSX.Element {
   const [searchedRecipes, setSearchedRecipes] = useState<RecipeModel[]>([]);
   const [searchSuccess, setSearchSuccess] = useState<boolean>(false);
@@ -93,22 +95,7 @@ export function Recipes(): JSX.Element {
         setSearchSuccess={setSearchSuccess}
       />
       {showNotification && (
-        <div
-          className="notification"
-          style={{
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            backgroundColor: 'rgba(14, 173, 205)',
-            color: 'white',
-            padding: '10px 20px',
-            borderRadius: '5px',
-            zIndex: 9999,
-          }}
-        >
-          Recipe saved successfully!
-        </div>
+        <div className="notification">Recipe saved successfully!</div>
       )}
       {renderSearchedGallery()}
     </div>
