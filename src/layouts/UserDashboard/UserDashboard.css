@@ -1,0 +1,9 @@
+.container-dash {
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 70vh;
+  height: 100%;
+  padding: 5rem 3rem;
+  padding-bottom: 3rem;
+  /* background-color: rgb(253, 251, 234); */
+}

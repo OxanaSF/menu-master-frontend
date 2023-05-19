@@ -7,6 +7,8 @@ import { selectUserId } from '../../store/selectors/userSelectors';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
+import './SavedRecipe.css';
+
 interface SavedRecipeProps {
   recipe: RecipeModel;
   onClose: () => void;
@@ -108,7 +110,6 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({
     <div key={recipe.id} className="col-12 col-md-4 mb-3">
       <div
         className="card saved-recipe-card"
-        style={{ cursor: 'pointer', minHeight: '200px' }}
         onClick={() => {
           fetchRecipeById(recipe.spoonacularId);
         }}
@@ -116,15 +117,10 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({
         <img
           src={recipe.imageUrl}
           className="saved-recipe-card-img"
-          style={{
-            minHeight: '50px',
-            objectFit: 'cover',
-            fontSize: '10px',
-          }}
           alt={recipe.name}
         />
         <div className="card-body">
-          <h6 className="card-title text6">{recipe.name}</h6>
+          <h6 className="saved-recipe-card-title">{recipe.name}</h6>
         </div>
       </div>
       <div className="mt-2">
@@ -132,7 +128,10 @@ const SavedRecipe: React.FC<SavedRecipeProps> = ({
           className="btn btn-sm "
           onClick={() => handleDelete(recipe.spoonacularId)}
         >
-          <FontAwesomeIcon icon={faTrashAlt} style={{ color: 'red' }} />
+          <FontAwesomeIcon
+            icon={faTrashAlt}
+            className="saved-recipe-card-delete-btn"
+          />
         </button>
       </div>
 

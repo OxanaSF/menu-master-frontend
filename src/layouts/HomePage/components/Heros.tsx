@@ -14,7 +14,7 @@ export const Heros = () => {
             <div className="container hero-par">
               <div>
                 <h1 className="hero-par-h1 hero-par1-h1">
-                  Revolutionize the way you eat with our web application
+                  Revolutionize the way you eat with Menu Master
                 </h1>
                 <p className="lead mb-4 letter-spacing hero-par-text">
                   Say goodbye to the hassle of managing a special diet and let

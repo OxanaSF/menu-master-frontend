@@ -20,12 +20,16 @@
   transform: scale(1.05);
   background-color: #94a89c;
   color: white;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-size: 0.9rem !important;
 }
 
 .plan-meals-with-image {
-  background-image: url('../../Images/PublicImages/hero-image-1.png');
+  /* background-image: url('../../Images/PublicImages/test14.png'); */
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: bottom;
 }
 
 .plan-meals-no-image {
@@ -34,4 +38,41 @@
 .meal-plans-title {
   font-size: 2.5rem;
   margin-bottom: 3rem;
+}
+
+.meal-plan-back-to-meals-btn {
+  margin-top: 2rem;
+}
+
+.custom-pagination .page-link {
+  background-color: #94a89c;
+  border-color: #94a89c;
+}
+
+.custom-pagination .page-link:hover {
+  background-color: rgba(7, 53, 13, 0.6);
+  border-color: rgba(7, 53, 13, 0.6);
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: rgba(7, 53, 13, 0.6);
+  border-color: rgba(7, 53, 13, 0.6);
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: rgba(7, 53, 13, 0.6);
+  border-color: rgba(7, 53, 13, 0.6);
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: rgba(7, 53, 13, 0.6);
+  border-color: rgba(7, 53, 13, 0.6);
+}
+
+.custom-pagination a {
+  color: rgba(6, 30, 9, 0.6) !important;
+}
+
+.title-list {
+  list-style: circle;
 }
