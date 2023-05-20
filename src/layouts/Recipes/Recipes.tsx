@@ -14,11 +14,13 @@ export function Recipes(): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [httpError, setHttpError] = useState<string | null>(null);
   const [showNotification, setShowNotification] = useState(false);
+  const [notification, setNotification] = useState('');
 
   const [query, setQuery] = useState('');
 
-  const handleNotification = () => {
+  const handleNotification = (value: string) => {
     setShowNotification(true);
+    setNotification(value);
     setTimeout(() => {
       setShowNotification(false);
     }, 3000);
@@ -94,9 +96,7 @@ export function Recipes(): JSX.Element {
         onFormSubmit={onFormSubmit}
         setSearchSuccess={setSearchSuccess}
       />
-      {showNotification && (
-        <div className="notification">Recipe saved successfully!</div>
-      )}
+      {showNotification && <div className="notification">{notification}</div>}
       {renderSearchedGallery()}
     </div>
   );
