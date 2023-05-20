@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+
 import { Container, Row, Col, Button, Table } from 'react-bootstrap';
 import Pagination from 'react-bootstrap/Pagination';
+
+import { selectUserId } from '../../store/selectors/userSelectors';
+
+import './MealPlan.css';
 
 type WeeklyPlanData = {
   id: number;
@@ -34,9 +41,39 @@ const MealPlan: React.FC<MealPlanProps> = ({
 }) => {
   const [activePage, setActivePage] = useState(1);
   const itemsPerPage = 1;
+  const userId = useSelector(selectUserId);
 
   const handlePageChange = (pageNumber: number) => {
     setActivePage(pageNumber);
+  };
+
+  const saveMealPlan = () => {
+    // console.log(weeklyPlanData);
+    console.log(weeklyPlanData?.name);
+    const data = {
+      userId: userId,
+      planId: weeklyPlanData?.id,
+      planName: weeklyPlanData?.name,
+      mealPlanData: JSON.stringify(weeklyPlanData?.days),
+    };
+
+    axios
+   
+      .post(
+        `http://localhost:8080/meal-plans/${userId}/save/${data.planId}`,
+        data,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .then((response) => {
+        console.log('Meal plan saved successfully!', response.data);
+      })
+      .catch((error) => {
+        console.error('Error saving meal plan:', error);
+      });
   };
 
   return (
@@ -46,9 +83,15 @@ const MealPlan: React.FC<MealPlanProps> = ({
           <Col xs="auto">
             <Button
               onClick={() => setWeeklyPlanIsSet(false)}
-              className="btn main-color btn-lg text-white meal-plan-back-to-meals-btn"
+              className="btn main-color btn-lg text-white"
             >
               Back to Meal Plans
+            </Button>
+            <Button
+              onClick={saveMealPlan}
+              className="btn main-color btn-lg text-white save-meal-plan-btn"
+            >
+              Save Meal Plan
             </Button>
           </Col>
         </Row>

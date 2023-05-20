@@ -10,7 +10,7 @@ const SavedRecipes: React.FC<SavedRecipesProps> = ({
   recipes,
   handleDeleteRecipe,
 }) => {
-  console.log(recipes);
+  // console.log(recipes);
   return (
     <div className="col-12 col-md-6 saved-recipes-container">
       {/* <div className="card mb-4" style={{ minHeight: '200px' }}> */}
