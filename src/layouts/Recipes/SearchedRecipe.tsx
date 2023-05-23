@@ -14,7 +14,7 @@ interface SearchedRecipeProps {
   image: string;
   title: string;
   recipe: RecipeModel;
-  handleNotification: () => void;
+  handleNotification: (value: string) => void;
 }
 
 const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
@@ -42,9 +42,9 @@ const SearchedRecipe: React.FC<SearchedRecipeProps> = ({
         `http://localhost:8080/recipes/${userId}/recipes/${spoonacularId}`,
         recipeDto
       )
-      .then(() => {
-        console.log('Recipe saved successfully');
-        handleNotification();
+      .then((response) => {
+        console.log(response.data);
+        handleNotification(response.data);
       })
       .catch((error: any) => {
         console.log(error);
