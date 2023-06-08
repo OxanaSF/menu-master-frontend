@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RecipeModel } from '../../models/RecipeModel';
-import backgroundImage from '../../Images/PublicImages/test22.png';
 import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
@@ -95,7 +94,8 @@ export const UserDashboard = () => {
       <div className="row container-dash-row">
         <div className="col-12 col-md-6">
           <div className="card mb-4 p-3" style={{ minHeight: '160px' }}>
-            <h1 className="text4">Welcome back, {userName}!</h1>
+          <h1 className="text4">Welcome back, {userName && userName.charAt(0).toUpperCase() + userName.slice(1)}!</h1>
+
           </div>
 
           <div className="card mb-5" style={{ minHeight: '270px' }}>
